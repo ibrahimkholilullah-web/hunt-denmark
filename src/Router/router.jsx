@@ -8,6 +8,7 @@ import MyProfile from "../Components/Dashboard/MyProfile";
 import AddProduct from "../Components/Dashboard/AddProduct";
 import MyProducts from "../Components/Dashboard/MyProducts";
 import Allproducts from "../Components/AllProducts/Allproducts";
+import ProductsDItails from "../Components/Shared/ProductsDItails";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         {
           path:'/allProducts',
           element: <Allproducts></Allproducts>
+        },
+        {
+          path:'/ditails/:id',
+          element: <ProductsDItails></ProductsDItails>
         }
       ]
     },

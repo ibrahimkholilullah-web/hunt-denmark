@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FaCaretSquareDown, FaCaretSquareUp } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading';
+import { Link } from 'react-router-dom';
 
 const Featured = () => {
   const { data: products = [], isLoading, refetch } = useQuery({
@@ -62,7 +63,7 @@ const Featured = () => {
       ></Section>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {products.slice(0, 4).map((product) => (
-          <div
+          <Link to={`/ditails/${product._id}`}
             key={product._id}
             className="border-2 border-black rounded-lg p-4 overflow-hidden flex justify-between items-center gap-3 shadow-lg hover:shadow-xl transition-shadow"
           >
@@ -98,7 +99,7 @@ const Featured = () => {
                 <span className="font-bold">{product.upvote}</span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
