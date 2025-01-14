@@ -4,11 +4,13 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { imageUpload, saveUser } from "../ImageBB/Utilist";
 import { useForm } from "react-hook-form";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleImage from "../../assets/Icon/google.png";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const { createUser, loading, updateUser,googleSignInUser } = useAuth();
+  const location = useLocation()
   const [passwordIcon, setPasswordIcon] = useState(false);
   const navigate = useNavigate();
   const {
@@ -40,7 +42,7 @@ const RegisterPage = () => {
       await saveUser({ ...result?.user, displayName: name, photoUrl });
 
       console.log("User created:", result.user);
-      navigate("/");
+      navigate(location?.state ? location?.state : "/");
     } catch (err) {
       console.error("Error during registration:", err.message);
     }
@@ -50,11 +52,13 @@ const RegisterPage = () => {
         const data= await  googleSignInUser()
         await saveUser(data?.user)
         
-          console.log("google Sign Up")
+          
            // Close the modal
            document.getElementById("my_modal_3").close();
+           navigate(location?.state ? location?.state : "/");
+           toast.success("google Sign Up")
         }catch(err){
-          console.log(err.message)
+          toast.error(err.message)
         }
       }
   return (

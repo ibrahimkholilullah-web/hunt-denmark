@@ -7,6 +7,7 @@ import Dashboard from "../Components/Dashboard/Dashboard";
 import MyProfile from "../Components/Dashboard/MyProfile";
 import AddProduct from "../Components/Dashboard/AddProduct";
 import MyProducts from "../Components/Dashboard/MyProducts";
+import Allproducts from "../Components/AllProducts/Allproducts";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         {
           path:'/',
           element: <Home></Home>
+        },
+        {
+          path:'/allProducts',
+          element: <Allproducts></Allproducts>
         }
       ]
     },

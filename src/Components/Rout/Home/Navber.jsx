@@ -20,7 +20,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/allArtifacts"
+          to="/allProducts"
          
         >
           All Products

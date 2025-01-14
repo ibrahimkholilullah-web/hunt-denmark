@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import googleImage from "../../../src/assets/Icon/google.png"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../AuthProvider/useAuth';
 import { saveUser } from '../ImageBB/Utilist';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const {googleSignInUser,signUser} = useAuth()
+    const location = useLocation()
     const navigate = useNavigate()
     const handleSubmit =async (e) => {
        
@@ -19,13 +21,19 @@ const Login = () => {
         try {
           //User Login
           await signUser(email, password)
-          navigate('/')
-          console.log('Login Successful')
-           // Close the modal
-           document.getElementById("my_modal_3").close();
+            // Close the modal
+            document.getElementById("my_modal_3").close();
+          navigate(location?.state ? location?.state : "/")
+          
+         
+           toast.success('Login Successful',{
+            position: 'top-left'
+           })
         } catch (err) {
           console.log(err)
-          toast.error(err?.message)
+          toast.error(err?.message, {
+            position: 'top-center'
+          })
         }
 
       
@@ -35,11 +43,17 @@ const Login = () => {
         const data= await  googleSignInUser()
         await saveUser(data?.user)
         
-          console.log("google Sign Up")
+          
            // Close the modal
            document.getElementById("my_modal_3").close();
+           navigate(location?.state ? location?.state : "/")
+           toast.success("google Sign Up", {
+            position: 'top-left'
+           })
         }catch(err){
-          console.log(err.message)
+          toast.error(err.message, {
+            position: 'top-center'
+          })
         }
       }
     return (
