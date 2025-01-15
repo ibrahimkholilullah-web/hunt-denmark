@@ -22,29 +22,7 @@ const MyProducts = () => {
           }
         })
      
-    console.log(Useremail)
-  // Handle delete product
-  // const handleDelete = async (productId) => {
-  //   const confirm = window.confirm('Are you sure you want to delete this product?')
-  //   if (!confirm) return;
-
-  //   try {
-  //     const response = await fetch(`/api/products/${productId}`, { method: 'DELETE' });
-  //     if (response.ok) {
-  //       toast.success('Product deleted successfully!');
-  //       setProducts(products.filter((product) => product._id !== productId));
-  //     } else {
-  //       throw new Error('Failed to delete the product');
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message || 'Something went wrong!');
-  //   }
-  // };
-
-  // Redirect to update page
-  // const handleUpdate = (productId) => {
-  //   navigate(`/update-product/${productId}`);
-  // };
+  
 if(isLoading) return <Loading></Loading>
   return (
     <div>
@@ -67,7 +45,7 @@ if(isLoading) return <Loading></Loading>
     <tbody>
       {/* row 1 */}
       {
-        Useremail.map((owner, inx) => <RableRow inx={inx} key={owner._id} owner={owner}></RableRow>)
+        Useremail.map((owner, inx) => <RableRow refetch={refetch} inx={inx} key={owner._id} owner={owner}></RableRow>)
       }
    
       
