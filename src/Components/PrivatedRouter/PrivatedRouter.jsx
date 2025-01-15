@@ -9,7 +9,9 @@ const PrivatedRouter = ({children}) => {
     if(loading) return <Loading></Loading>
     if(user) return children;
 
-    return <Navigate to='/login' state={location.pathname}></Navigate>
+    return <>
+    <Navigate to='/login' state={location.pathname}></Navigate>
+    </> 
 };
 
 export default PrivatedRouter;

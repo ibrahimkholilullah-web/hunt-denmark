@@ -61,10 +61,13 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Add Product</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-r-2 border-black w-60 p-2 rounded-lg mx-auto">
+        Add Product
+      </h1>
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         {/* Product Name */}
-        <div className="mb-4">
+      <div className='md:flex items-center gap-5'>
+      <div className="mb-4 md:w-1/2">
           <label htmlFor="productName" className="block text-gray-700 text-sm font-bold mb-2">
             Product Name <span className="text-red-500">*</span>
           </label>
@@ -79,7 +82,7 @@ const AddProduct = () => {
         </div>
 
         {/* Product Image */}
-        <div>
+        <div className='md:w-1/2 '>
               <label className="form-control text-white w-full">
                 <div className="label">
                   <span className="label-text">Products Image</span>
@@ -88,11 +91,12 @@ const AddProduct = () => {
                   type="file"
                   accept="image/*"
                   name='image'
-                  className="file-input file-input-bordered bg-[#111827] border-white hover:border-yellow-400 border-2"
+                  className="file-input mb-6 file-input-bordered bg-[#111827] border-white hover:border-yellow-400 border-2"
                 />
                 
               </label>
             </div>
+      </div>
 
         {/* Description */}
         <div className="mb-4">
@@ -116,8 +120,9 @@ const AddProduct = () => {
           <p className="text-gray-500">Email: {user?.email || 'No email'}</p>
         </div>
 
-        {/* Tags */}
-        <div className="mb-4">
+       <div className='flex items-center gap-5'>
+         {/* Tags */}
+         <div className="mb-4 md:w-1/2">
           <label htmlFor="tags" className="block text-gray-700 text-sm font-bold mb-2">
             Tags
           </label>
@@ -132,7 +137,7 @@ const AddProduct = () => {
         </div>
 
         {/* External Link */}
-        <div className="mb-4">
+        <div className="mb-4 md:w-1/2">
           <label htmlFor="externalLink" className="block text-gray-700 text-sm font-bold mb-2">
             External Link
           </label>
@@ -145,6 +150,7 @@ const AddProduct = () => {
           />
         </div>
 
+       </div>
         {/* Submit Button */}
         <button
           type="submit"

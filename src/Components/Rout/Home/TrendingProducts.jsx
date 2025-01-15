@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../../Shared/Loading';
 import { Link } from 'react-router-dom';
+import { FcNext } from 'react-icons/fc';
 
 const TrendingProducts = () => {
     const {data : tranding=[], isLoading,refetch} = useQuery({
@@ -33,10 +34,10 @@ const TrendingProducts = () => {
                 {
                     tranding.map(tranfing => (
                         <div key={tranfing._id}>
-                            <div className="card border-2 rounded-lg border-black bg-base-100  shadow-xl">
+                            <div className="card border rounded-lg  bg-base-100  shadow-xl">
                               <figure>
                                 <img
-                                  className='h-44 w-fit object-cover'
+                                  className='h-44 w-44  rounded-full object-cover'
                                   src={tranfing.productsImg}
                                   alt="Shoes" />
                               </figure>
@@ -56,7 +57,8 @@ const TrendingProducts = () => {
                     ))
                 }
             </div>
-            <Link to='/allProducts' className='btn w-36 my-8 border-2 bg-white flex mx-auto border-black rounded-none '>View More</Link>
+            <Link to='/allProducts' className='btn w-36 my-8 border-2 bg-[#54673B] hover:bg-green-900 flex mx-auto text-white  rounded-none '>View More <FcNext className='text-white' size={20} />
+            </Link>
         </div>
     );
 };

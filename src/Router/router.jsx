@@ -9,6 +9,8 @@ import AddProduct from "../Components/Dashboard/AddProduct";
 import MyProducts from "../Components/Dashboard/MyProducts";
 import Allproducts from "../Components/AllProducts/Allproducts";
 import ProductsDItails from "../Components/Shared/ProductsDItails";
+import PrivatedRouter from "../Components/PrivatedRouter/PrivatedRouter";
+import UpdatePage from "../Components/Dashboard/UpdatePage";
 
 const router = createBrowserRouter([
     {
@@ -21,11 +23,15 @@ const router = createBrowserRouter([
         },
         {
           path:'/allProducts',
-          element: <Allproducts></Allproducts>
+          element: <Allproducts></Allproducts>,
         },
         {
           path:'/ditails/:id',
-          element: <ProductsDItails></ProductsDItails>
+          element: <PrivatedRouter><ProductsDItails></ProductsDItails></PrivatedRouter>
+        },
+        {
+          path:'/update/:id',
+          element: <UpdatePage></UpdatePage>
         }
       ]
     },

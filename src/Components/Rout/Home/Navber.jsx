@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaHome, FaRegUser } from 'react-icons/fa'
 import useAuth from '../../AuthProvider/useAuth'
-import Login from '../../UserCreate/Login'
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth()
@@ -57,7 +56,7 @@ const Navbar = () => {
             {pathName}
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost md:text-xl uppercase">Products Hunt</NavLink>
+        <NavLink to="/" className="btn btn-ghost text-[#54673B] md:text-2xl uppercase">Products Hunt</NavLink>
       </div>
       <div className="navbar-center hidden lg:flex"></div>
       <div className="navbar-end">
@@ -65,7 +64,7 @@ const Navbar = () => {
           {pathName}
         </ul>
         {!user && (
-          <Link onClick={()=>document.getElementById('my_modal_3').showModal()} className="mr-4 border-b-2">
+          <Link to="/login" className="mr-4 border-b-2">
             Login
           </Link>
         )}
@@ -108,7 +107,6 @@ const Navbar = () => {
         )}
       </div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
-       <Login></Login>
     </div>
   )
 }
