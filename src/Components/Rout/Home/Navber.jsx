@@ -11,7 +11,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-[#3BB77E] hover:bg-none rounded-none text-whit pb-1 "
+              : "hover:border-b-2 hover:border-[#3BB77E] hover:rounded-none"
+          }
         >
           <FaHome />
           Home
@@ -20,7 +24,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/allProducts"
-         
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-[#3BB77E] hover:bg-none rounded-none text-whit pb-1 "
+              : "hover:border-b-2 hover:border-[#3BB77E] hover:rounded-none"
+          }
         >
           All Products
         </NavLink>
@@ -30,7 +38,7 @@ const Navbar = () => {
   )
 
   return (
-    <div className="navbar w-11/12 mx-auto font-bold lg:px-10 uppercase fixed z-10 bg-white py-4 mb-4 ">
+    <div className="navbar constiner mx-auto font-bold lg:px-11 uppercase fixed z-10 bg-[#BCE3C9] py-4 mb-4 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -56,15 +64,15 @@ const Navbar = () => {
             {pathName}
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost text-[#54673B] md:text-2xl uppercase">Products Hunt</NavLink>
+        <NavLink to="/" className="btn btn-ghost varela text-[#3BB77E] md:text-3xl uppercase">Products Hunt</NavLink>
       </div>
       <div className="navbar-center hidden lg:flex"></div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal gap-3 px-1 hidden items-center lg:flex">
+        <ul className="menu menu-horizontal mr-5 gap-3 px-1 hidden items-center lg:flex">
           {pathName}
         </ul>
         {!user && (
-          <Link to="/login" className="mr-4 border-b-2">
+          <Link to="/login" className="mr-4 text-white hover:border hover:border-black hover:bg-[#BCE3C9] px-8 bg-[#3BB77E] btn rounded-none">
             Login
           </Link>
         )}
@@ -96,7 +104,7 @@ const Navbar = () => {
                 <Link
                   to="/"
                   onClick={signOutUser}
-                  className="block border-2 rounded-lg text-center"
+                  className="block border-2 bg-[#3BB77E] rounded-lg text-center"
                 >
                   Logout
                 </Link>

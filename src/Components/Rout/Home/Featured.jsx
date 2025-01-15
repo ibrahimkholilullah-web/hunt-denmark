@@ -48,7 +48,8 @@ const Featured = () => {
   }
 
   return (
-    <div className=' container mx-auto '>
+   <div className='bg-[#F5F5F5]'>
+     <div className=' container mx-auto bg-[#F5F5F5]'>
       <Section titel="New Add Products" description="Featured Products" />
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {products.slice(0, 4).map((product) => (
@@ -63,16 +64,16 @@ const Featured = () => {
                 alt={product.productName}
               />
               <div className='flex-col'>
-                <Link to={`/ditails/${product._id}`} className="font-semibold items-center gap-2 hover:text-red-500 flex">{product.productName}<LuMousePointerClick />
+                <Link to={`/ditails/${product._id}`} className="font-semibold varela items-center gap-2 hover:text-red-500 flex">{product.productName}<LuMousePointerClick />
                 </Link>
-                <p className="bg-gray-200 text-sm text-[#54673B] text-center px-2 rounded-full inline-block mb-3">
+                <p className="bg-gray-200 style-new text-sm text-[#54673B] text-center px-2 rounded-full inline-block mb-3">
                   #{product.tags}
                 </p>
               </div>
             </div>
             <div className="justify-between items-center text-sm">
               <div className="flex items-center gap-2 text-lg">
-                <span className="font-bold">{product.upvote}</span>
+                <span className="font-bold varela">{product.upvote}</span>
                 <FaClover
                   size={25}
                   onClick={() => handleUpvote(product._id, product.ownerEmail)}
@@ -84,6 +85,7 @@ const Featured = () => {
         ))}
       </div>
     </div>
+   </div>
   );
 };
 

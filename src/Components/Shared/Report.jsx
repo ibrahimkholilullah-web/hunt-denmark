@@ -9,10 +9,11 @@ const Report = ({ditails}) => {
   const repoterEmail = user?.email
   const reportProducts = ditails.productName
   const reportImaPro = ditails.productsImg
+  const proId = ditails._id
   const handleReport =async e =>{
     e.preventDefault()
     const reportpost = {
-      repoterName,repoterEmail,reportImaPro,reportProducts
+      repoterName,repoterEmail,reportImaPro,reportProducts,proId
   
     }
     try{

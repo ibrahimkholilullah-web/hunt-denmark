@@ -28,7 +28,8 @@ const TrendingProducts = () => {
     if(isLoading) return <Loading></Loading>
     console.log(tranding)
     return (
-        <div className='container mx-auto'>
+       <div className='bg-[#FFFFFF]'>
+         <div className='container mx-auto'>
             <Section titel='New Trending' description='Trending Products'></Section>
             <div className='px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
@@ -60,6 +61,7 @@ const TrendingProducts = () => {
             <Link to='/allProducts' className='btn w-36 my-8 border-2 bg-[#54673B] hover:bg-green-900 flex mx-auto text-white  rounded-none '>View More <FcNext className='text-white' size={20} />
             </Link>
         </div>
+       </div>
     );
 };
 

@@ -55,11 +55,11 @@ const Login = () => {
         }
       }
     return (
-      <div className="flex justify-center items-center pt-12 bg-gray-100 px-4">
+      <div className="flex min-h-screen justify-center items-center bg-[#F5F5F5] px-4">
       <div className="border-2 m-2 bg-slate-200 shadow-xl rounded-xl flex items-center justify-center w-full max-w-md">
-        <div className="bg-opacity-80 px-8 py-12 text-center w-full">
+        <div className="bg-opacity-80 px-8 border-2 border-[#3BB781] rounded-lg py-12 text-center w-full">
           <div className="flex justify-center items-center mb-6">
-            <div className="bg-gray-700 border text-white w-16 h-16 rounded-full flex items-center justify-center">
+            <div className="bg-[#3BB781] border text-white w-16 h-16 rounded-full flex items-center justify-center">
               <FaUsers size={30} />
             </div>
           </div>
@@ -69,7 +69,7 @@ const Login = () => {
                 type="email"
                 placeholder="Enter Your Email"
                 name="email"
-                className="w-full px-4 py-2 rounded-md border border-gray-600 text-black focus:outline-none focus:ring-2 focus:ring-purple-400"
+                className="w-full px-4 py-2 rounded-md border border-[#3BB781] text-black focus:outline-none focus:ring-2 focus:ring-[#3BB781]"
                 required
               />
             </div>
@@ -78,25 +78,25 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="w-full px-4 py-2 rounded-md border border-gray-600 text-black focus:outline-none focus:ring-2 focus:ring-purple-400"
+                className="w-full px-4 py-2 rounded-md border border-[#3BB781] text-black focus:outline-none focus:ring-2 focus:ring-[#3BB781]"
                 required
               />
             </div>
             <div className="flex justify-between items-center text-sm text-gray-400">
-              <label className="flex items-center">
+              <label className="flex items-center text-black varela">
                 <input
                   type="checkbox"
-                  className="mr-2 form-checkbox text-purple-800"
+                  className="mr-2 form-checkbox "
                 />
                 Remember me
               </label>
-              <a href="#" className="hover:text-purple-700">
+              <a href="#" className="hover:text-[#3BB781] text-black">
                 Forgot Password?
               </a>
             </div>
             <button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-500 text-white py-2 rounded-md transition"
+              className="w-full bg-[#3BB781] hover:bg-[#3BB781] text-white py-2 rounded-md transition"
             >
               Login
             </button>
@@ -104,7 +104,7 @@ const Login = () => {
           <button
             onClick={habdleGoogleSignUp}
             type="button"
-            className="w-full border border-black hover:bg-[#1F2937] mt-2 py-2 rounded-lg font-medium transition flex items-center justify-center gap-2"
+            className="w-full border border-black hover:bg-[#3BB781] mt-2 py-2 rounded-lg font-medium transition flex items-center justify-center gap-2"
           >
             <img className="w-6" src={googleImage} alt="Google Logo" />
             Google Sign Up

@@ -32,7 +32,6 @@ const AllProducts = () => {
   // Fetch products
   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
       try {
         const res = await fetch(
           `${import.meta.env.VITE_PROJECT_APT}/all-products?searchParams=${search}&page=${currentPage}&size=${itemPerPage}`
@@ -66,7 +65,8 @@ const AllProducts = () => {
   }
 
   return (
-    <div className="container mx-auto min-h-screen">
+    <div className='bg-[#F5F5F5]'>
+      <div className="container md:pt-10 mx-auto min-h-screen">
       <div className="w-8/12 mx-auto mb-8">
         <label className="input input-bordered rounded-3xl flex items-center gap-2">
           <input
@@ -98,7 +98,9 @@ const AllProducts = () => {
           <Card key={card._id} card={card} />
         ))}
       </div>
-      <div className="pagination mt-10 flex items-center gap-5 justify-center mx-auto">
+     
+    </div>
+    <div className="pagination py-10 flex items-center gap-5 justify-center mx-auto">
         <button onClick={handlePrevPage} disabled={currentPage === 0}>
           <FcPrevious size={20} />
         </button>

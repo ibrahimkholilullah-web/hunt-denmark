@@ -63,13 +63,14 @@ const ProductsDItails = () => {
             reviewerName: user?.displayName,
             reviewerImage: user?.photoURL,
             description: reviewData.description,
-            rating: reviewData.rating,
+            rating: parseInt(reviewData.rating),
         };
+        console.log(review)
 
         try {
             await axios.post(`${import.meta.env.VITE_PROJECT_APT}/reviews`, review);
+            e.target.reset()
             toast.success('Review submitted successfully!');
-            setReviewData({ description: '', rating: 0 }); // Reset form
         } catch (err) {
             toast.error('Failed to submit review: ' + err.message);
         }
