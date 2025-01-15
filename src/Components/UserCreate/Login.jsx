@@ -55,7 +55,7 @@ const Login = () => {
         }
       }
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+      <div className="flex justify-center items-center pt-12 bg-gray-100 px-4">
       <div className="border-2 m-2 bg-slate-200 shadow-xl rounded-xl flex items-center justify-center w-full max-w-md">
         <div className="bg-opacity-80 px-8 py-12 text-center w-full">
           <div className="flex justify-center items-center mb-6">

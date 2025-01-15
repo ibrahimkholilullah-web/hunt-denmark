@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../AuthProvider/useAuth';
 
 const Dashboard = () => {
@@ -53,7 +53,7 @@ const Dashboard = () => {
         <header className="flex justify-between items-center mb-6">
          
           <div className='flex  gap-10 items-center'>
-            <button className="px-4 py-2 border rounded mr-2">Home</button>
+            <Link to='/' className="px-4 py-2 border rounded mr-2">Home</Link>
             <img src={user?.photoURL} alt="User" className="rounded-full w-10 h-10" />
           </div>
         </header>

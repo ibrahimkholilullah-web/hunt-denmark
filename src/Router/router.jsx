@@ -32,13 +32,14 @@ const router = createBrowserRouter([
         {
           path:'/update/:id',
           element: <UpdatePage></UpdatePage>
-        }
+        },
+        {
+          path : "/login",
+          element: <Login></Login>
+        },
       ]
     },
-    {
-      path : "/login",
-      element: <Login></Login>
-    },
+    
     {
       path:'/register',
       element: <RegisterPage></RegisterPage>

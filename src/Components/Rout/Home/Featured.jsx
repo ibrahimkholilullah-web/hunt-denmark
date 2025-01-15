@@ -7,11 +7,12 @@ import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading';
 import bgImage from '../../../assets/Image/pexels-hannaauramenka-8409851.jpg';
 import { LuMousePointerClick } from 'react-icons/lu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../AuthProvider/useAuth';
 
 const Featured = () => {
   const {user} = useAuth()
+  const navigate = useNavigate()
   const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
@@ -23,6 +24,9 @@ const Featured = () => {
   const [votedProducts, setVotedProducts] = useState({});
 
   const handleUpvote = async (id,email) => {
+    if(!user){
+      navigate("/login")
+    }
     if(user?.email === email){
       return toast.error('Your are a Not Like this Products .')
   }
@@ -50,7 +54,7 @@ const Featured = () => {
         {products.slice(0, 4).map((product) => (
           <div
             key={product._id}
-            className="border-2 border-[#54673B] rounded-lg p-4 overflow-hidden flex justify-between items-center gap-3 shadow-lg hover:shadow-xl transition-shadow"
+            className="border-2 hover:bg-brown-50 border-[#54673B] rounded-lg p-4 overflow-hidden flex justify-between items-center gap-3 shadow-lg hover:shadow-xl transition-shadow"
           >
             <div className="flex items-center gap-5">
               <img

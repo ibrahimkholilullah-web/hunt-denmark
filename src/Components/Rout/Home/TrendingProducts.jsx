@@ -34,7 +34,7 @@ const TrendingProducts = () => {
                 {
                     tranding.map(tranfing => (
                         <div key={tranfing._id}>
-                            <div className="card border rounded-lg  bg-base-100  shadow-xl">
+                            <div className="card hover:bg-brown-50 border rounded-lg  bg-base-100  shadow-xl">
                               <figure>
                                 <img
                                   className='h-44 w-44  rounded-full object-cover'
