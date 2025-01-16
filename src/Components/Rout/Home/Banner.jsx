@@ -23,14 +23,14 @@ const Banner = () => {
                         <Typography
                             variant="h1"
                             color="white"
-                            className="mb-4 text-lg sm:text-2xl md:text-4xl lg:text-5xl text-[#D98855] font-bold varela"
+                            className="mb-4 text-left text-lg sm:text-2xl md:text-4xl lg:text-5xl text-[#3BB77E] font-bold varela"
                         >
                             Centralized Mac maintenance for teams
                         </Typography>
                         <Typography
                             variant="lead"
                             color="white"
-                            className="mb-8 text-sm sm:text-base md:text-lg lg:text-xl opacity-90 style-new"
+                            className="mb-8 text-left text-sm sm:text-base md:text-lg lg:text-xl opacity-90 style-new"
                         >
                            CleanMyMac Business offers a centralized solution for small and medium teams to maintain and optimize their Mac systems, ensuring peak performance and security across all devices.
                         </Typography>

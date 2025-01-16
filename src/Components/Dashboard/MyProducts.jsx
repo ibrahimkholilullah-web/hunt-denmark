@@ -46,7 +46,18 @@ if(isLoading) return <Loading></Loading>
     <tbody>
       {/* row 1 */}
       {
+        Useremail.length === 0 ? <tr>
+        <td
+          colSpan="6"
+          className="text-center text-[#253D4E] py-5 text-lg"
+        >
+          No products added yet. Please add your products!
+        </td>
+      </tr> : <>
+      {
         Useremail.map((owner, inx) => <RableRow refetch={refetch} inx={inx} key={owner._id} owner={owner}></RableRow>)
+      }
+      </>
       }
    
       

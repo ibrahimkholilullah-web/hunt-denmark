@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Loading from '../Shared/Loading';
 import Card from './Card';
 import { FcNext, FcPrevious } from 'react-icons/fc';
+import useAuth from '../AuthProvider/useAuth';
+import toast from 'react-hot-toast';
 
 const AllProducts = () => {
   const [search, setSearch] = useState('');
@@ -10,24 +12,24 @@ const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const {user} = useAuth()
   const numberOfPage = Math.ceil(count / itemPerPage);
   const pages = [...Array(numberOfPage).keys()];
 
   // Fetch product count
   useEffect(() => {
-    const fetchProductCount = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_PROJECT_APT}/productsCount`);
-        const data = await res.json();
-        setCount(data.count);
-      } catch (error) {
-        console.error('Error fetching product count:', error);
-      }
-    };
-
+    
     fetchProductCount();
   }, []);
+  const fetchProductCount = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_PROJECT_APT}/productsCount`);
+      const data = await res.json();
+      setCount(data.count);
+    } catch (error) {
+      console.error('Error fetching product count:', error);
+    }
+  };
 
   // Fetch products
   useEffect(() => {
@@ -59,13 +61,14 @@ const AllProducts = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+ 
 
   if (loading) {
     return <Loading />;
   }
 
   return (
-    <div className='bg-[#F5F5F5]'>
+    <div className='bg-[#F5F5F5] min-h-screen'>
       <div className="container md:pt-10 mx-auto min-h-screen">
       <div className="w-8/12 mx-auto mb-8">
         <label className="input input-bordered rounded-3xl flex items-center gap-2">

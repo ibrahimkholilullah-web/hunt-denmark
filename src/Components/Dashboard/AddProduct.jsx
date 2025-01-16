@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { imageUpload } from '../ImageBB/Utilist';
 import useAuth from '../AuthProvider/useAuth';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
@@ -61,15 +60,18 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 varela">
-      <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-r-2 border-black w-60 varela p-2 rounded-lg mx-auto">
-        Add Product
-      </h1>
-      <form onSubmit={handleSubmit} className="bg-[#939393] shadow-2xl text-black rounded px-8 pt-6 border-black border-2 pb-8 mb-4">
-        {/* Product Name */}
-      <div className='md:flex items-center gap-5'>
-      <div className="mb-4 md:w-1/2">
-          <label htmlFor="productName" className="block  text-sm font-bold mb-2">
+    <div className="container mx-auto p-6 font-varela">
+    <h1 className="text-2xl font-bold mb-6 text-center border-b-4 border-r-4 border-gray-700 w-fit p-3 rounded-lg mx-auto">
+      Add Product
+    </h1>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-[#F5F5F5] shadow-xl text-gray-800 rounded-lg px-8 pt-6 pb-8 border border-gray-300"
+    >
+      {/* Product Name and Image */}
+      <div className="md:flex items-center gap-6">
+        <div className="mb-4 md:w-1/2">
+          <label htmlFor="productName" className="block text-sm font-semibold mb-2">
             Product Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -77,54 +79,51 @@ const AddProduct = () => {
             id="productName"
             name="productName"
             placeholder="Enter product name"
-            className="w-full px-3 py-2 border bg-blue-gray-50 text-sm rounded"
+            className="w-full px-4 py-2 border border-gray-300 bg-gray-50 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
-
-        {/* Product Image */}
-        <div className='md:w-1/2 '>
-              <label className="form-control text-white w-full">
-                <div className="label">
-                  <span className="label-text text-black">Products Image</span>
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name='image'
-                  className="file-input mb-6 file-input-bordered bg-[#111827] border-white hover:border-yellow-400 border-2"
-                />
-                
-              </label>
-            </div>
-      </div>
-
-        {/* Description */}
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-bold mb-2">
-            Description <span className="text-red-500">*</span>
+  
+        <div className="mb-4 md:w-1/2">
+          <label htmlFor="productImage" className="block text-sm font-semibold mb-2">
+            Product Image
           </label>
-          <textarea
-            id="description"
-            name="description"
-            placeholder="Enter product description"
-            className="w-full px-3 py-2 border bg-blue-gray-50 text-sm rounded"
-            rows="4"
-            required
+          <input
+            type="file"
+            id="productImage"
+            accept="image/*"
+            name="image"
+            className="file-input file-input-bordered bg-gray-100 border-gray-300 hover:border-green-500 border rounded w-full"
           />
         </div>
-
-        {/* Product Owner Info */}
-        <div className="mb-4">
-          <label className="block  text-sm font-bold mb-2">Owner Information:</label>
-          <p className="">Name: {user?.displayName || 'Unknown'}</p>
-          <p className="">Email: {user?.email || 'No email'}</p>
-        </div>
-
-       <div className='flex items-center gap-5'>
-         {/* Tags */}
-         <div className="mb-4 md:w-1/2">
-          <label htmlFor="tags" className="block  text-sm font-bold mb-2">
+      </div>
+  
+      {/* Description */}
+      <div className="mb-6">
+        <label htmlFor="description" className="block text-sm font-semibold mb-2">
+          Description <span className="text-red-500">*</span>
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Enter product description"
+          className="w-full px-4 py-2 border border-gray-300 bg-gray-50 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+  
+      {/* Product Owner Info */}
+      <div className="mb-6">
+        <h2 className="text-sm font-semibold mb-2">Owner Information:</h2>
+        <p className="text-sm">Name: {user?.displayName || "Unknown"}</p>
+        <p className="text-sm">Email: {user?.email || "No email"}</p>
+      </div>
+  
+      {/* Tags and External Link */}
+      <div className="md:flex items-center gap-6">
+        <div className="mb-4 md:w-1/2">
+          <label htmlFor="tags" className="block text-sm font-semibold mb-2">
             Tags
           </label>
           <input
@@ -132,14 +131,13 @@ const AddProduct = () => {
             id="tags"
             name="tags"
             placeholder="Enter product tags"
-            className="w-full px-3 py-2 bg-blue-gray-50 text-sm border rounded"
+            className="w-full px-4 py-2 border border-gray-300 bg-gray-50 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
-
-        {/* External Link */}
+  
         <div className="mb-4 md:w-1/2">
-          <label htmlFor="externalLink" className="block text-sm font-bold mb-2">
+          <label htmlFor="externalLink" className="block text-sm font-semibold mb-2">
             External Link
           </label>
           <input
@@ -147,20 +145,21 @@ const AddProduct = () => {
             id="externalLink"
             name="externalLink"
             placeholder="Enter product website or landing page link"
-            className="w-full px-3 py-2 border bg-blue-gray-50 text-sm rounded"
+            className="w-full px-4 py-2 border border-gray-300 bg-gray-50 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
-
-       </div>
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="bg-[#3BB77E] border-2 text-black w-full varela px-4 py-2 rounded hover:bg-[#3BB77E] transition"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+      </div>
+  
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="bg-green-500 text-white w-full px-4 py-3 rounded-lg hover:bg-green-600 transition ease-in-out duration-300"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  
   );
 };
 

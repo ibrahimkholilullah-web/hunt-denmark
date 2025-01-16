@@ -4,6 +4,7 @@ import useAuth from '../../AuthProvider/useAuth';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
 import RableRow from '../RableRow';
 import UsersTabel from './UsersTabel';
+import Loading from '../../Shared/Loading';
 
 const ManageUser = () => {
     const secureAxiose = useSecureAxiose()
@@ -15,7 +16,7 @@ const ManageUser = () => {
             return data
         }
     })
-    console.log(users)
+    if(isLoading)return <Loading></Loading>
     return (
         <div>
       <div className='border-2 border-black m-2 rounded-xl'>
@@ -23,7 +24,7 @@ const ManageUser = () => {
   <table className="table">
     {/* head */}
     <thead>
-      <tr className='text-sm border-b-2 border-white'>
+      <tr className='text-sm border-b-2 text-center text-black border-white'>
         <th>
           NO
         </th>

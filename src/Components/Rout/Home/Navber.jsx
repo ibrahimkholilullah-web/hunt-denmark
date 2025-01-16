@@ -39,7 +39,7 @@ const Navbar = () => {
   )
 
   return (
-    <div className="navbar constiner mx-auto font-bold lg:px-11 uppercase fixed z-10 bg-[#BCE3C9] py-4 mb-4 ">
+    <div className="navbar constiner mx-auto font-bold lg:px-11 uppercase fixed z-10 bg-[#BCE3C9] py-6 mb-4 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,16 +60,16 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm bg-[#302E2F] border border-white dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm bg-[#BCE3C9] border border-white dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {pathName}
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost varela text-[#3BB77E] md:text-3xl uppercase">Products Hunt</NavLink>
+        <NavLink to="/" className="btn btn-ghost varela text-[#3BB77E] md:text-3xl uppercase">HUND <span className='text-[#253D4E]'>Denmark</span></NavLink>
       </div>
       <div className="navbar-center hidden lg:flex"></div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal mr-5 gap-3 px-1 hidden items-center lg:flex">
+        <ul className="menu menu-horizontal varela mr-5 gap-3 px-1 hidden items-center lg:flex">
           {pathName}
         </ul>
         {!user && (
@@ -82,13 +82,13 @@ const Navbar = () => {
           <div tabIndex={0} role="button" className="flex items-center">
             <img
               alt="User Avatar"
-              className="w-10 h-10 rounded-full border-2 p-[2px] border-[#D98855]"
+              className="w-12 h-12 rounded-full border-2 p-[2px] border-[#3BB77E]"
               src={user?.photoURL || 'defaultAvatar.png'}
             />
           </div>
           <ul
               tabIndex={0}
-              className="dropdown-content text-center text-sm w-52 bg-white border-2 border-white absolute right-0  rounded-box z-10 p-2 shadow"
+              className="dropdown-content text-center text-sm w-52 bg-[#BCE3C9] border-2 text-white border-white absolute right-0  rounded-box z-10 p-2 shadow"
             >
               <div>
                 <img
@@ -97,10 +97,10 @@ const Navbar = () => {
                   alt="User Profile"
                 />
                 <div className='mt-2'>
-                  <li><p className="w-full">{user.displayName || 'Anonymous'}</p></li>
+                  <li><p className="w-full text-[#253D4E] ">{user.displayName || 'Anonymous'}</p></li>
                 </div>
               </div>
-              <li className='border-2 rounded-lg'>
+              <li className='border-2 rounded-lg bg-[#3BB77E]'>
                 <Link to={role === 'users' ? "/dadhboard/myprofile" : role === 'modarator' ? "/dadhboard/review": '/dadhboard/statistics'}>
                   Dashboard
                 </Link>

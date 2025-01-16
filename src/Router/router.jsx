@@ -79,7 +79,8 @@ const router = createBrowserRouter([
         {
           path:'statistics',
           element: <PrivatedRouter><Statistics></Statistics></PrivatedRouter>
-        }
+        },
+       
       ]
     }
   ]);

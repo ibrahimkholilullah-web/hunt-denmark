@@ -5,6 +5,7 @@ import axios from 'axios';
 import Loading from '../../Shared/Loading';
 import { Link } from 'react-router-dom';
 import { FcNext } from 'react-icons/fc';
+import { CiCircleChevRight } from 'react-icons/ci';
 
 const TrendingProducts = () => {
     const {data : tranding=[], isLoading,refetch} = useQuery({
@@ -14,17 +15,7 @@ const TrendingProducts = () => {
             return data
         }
     })
-    // productName,
-    //     productsImg,
-    //     description,
-    //     tags,
-    //     externalLink,
-    //     ownerImage,
-    //     ownerName,
-    //     ownerEmail,
-    //     upvote,
-    //     vote,
-    //     status
+    
     if(isLoading) return <Loading></Loading>
     console.log(tranding)
     return (
@@ -58,7 +49,8 @@ const TrendingProducts = () => {
                     ))
                 }
             </div>
-            <Link to='/allProducts' className='btn w-36 my-8 border-2 bg-[#3BB77E] hover:bg-[#3BB77E] flex mx-auto   rounded-none varela'>View More <FcNext className='text-[#3BB77E]' size={20} />
+            <Link to='/allProducts' className='btn w-48 text-white mt-16 border-2 bg-[#3BB77E] hover:bg-[#3BB77E] flex mx-auto   rounded-none varela'>Show All Products <CiCircleChevRight size={25}  />
+
             </Link>
         </div>
        </div>

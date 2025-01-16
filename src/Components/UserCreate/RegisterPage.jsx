@@ -51,12 +51,8 @@ const RegisterPage = () => {
         try{
         const data= await  googleSignInUser()
         await saveUser(data?.user)
-        
-          
-           // Close the modal
-           document.getElementById("my_modal_3").close();
-           navigate(location?.state ? location?.state : "/");
-           toast.success("google Sign Up")
+        navigate(location?.state ? location?.state : "/");
+        toast.success("google Sign Up")
         }catch(err){
           toast.error(err.message)
         }

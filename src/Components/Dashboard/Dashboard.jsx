@@ -4,98 +4,133 @@ import useAuth from '../AuthProvider/useAuth';
 import userRole from '../hooks/userRole';
 
 const Dashboard = () => {
-  const {user} = useAuth()
-  const [role,isLoading] = userRole()
+  const { user } = useAuth();
+  const [role, isLoading] = userRole();
+
+  const activeLinkClass = "text-blue-500 font-bold";
+  const defaultLinkClass = "text-gray-700 hover:text-blue-400";
+
   return (
-   <div className='bg-[#F5F5F5] min-h-screen'>
-          <div className=' flex justify-between items-center w-11/12  py-4 rounded-2xl'>
-          <div>
-          </div>
-          <div className=' flex items-center gap-5'>
-          <div>
-              <p className="text-sm font-medium">{user?.displayName}</p>
-              <p className="text-xs text-gray-500">{user?.email}</p>
-            </div>
-          <img src={user?.photoURL} alt="User" className="rounded-full w-10 h-10" />
-          
-            </div>
-          </div>
-
-     <div className=" w-11/12 mx-auto bg-[#E2E2E2] px-2 pb-2 rounded-xl flex">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white rounded-3xl mt-5 p-4 border-r">
-        <Link to='/' className="text-2xl font-bold mb-6">Products Hunt</Link>
-        <nav>
-          <ul className="space-y-4">
-            
-           {
-            role === "users" && <>
-            <ul className="space-y-4">
-            <li>
-                
-                <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/myprofile'>My Profile</NavLink>
-    
-                </li>
-                <li>
-                <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/addProducts'>Add Product</NavLink>
-                </li>
-                <li>
-                <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/myProducts'>My Products</NavLink>
-                </li>
-            </ul>
-            </>
-           }
-           {
-            role === "modarator" && <>
-            <ul className="space-y-4">
-            <li>
-            <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/review'>Product Review</NavLink>
-            </li>
-            <li>
-            <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/report'>Reported Contents</NavLink>
-            </li>
-            </ul>
-            </>
-           }
-           {
-            role === 'admin' && <>
-            <ul>
-            <li>
-            <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/statistics'>Statistics</NavLink>
-            </li>
-            <li>
-            <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/manageuser'>Manage Users</NavLink>
-            </li>
-            </ul>
-            </>
-           }
-
-           
-          </ul>
-        </nav>
-        <div className=" fixed bottom-4">
-          <div className="flex items-center space-x-4">
-            
-           
-          </div>
+    <div className="bg-[#BCE3C9] min-h-screen varela">
+      {/* Header */}
+      <div className="flex justify-between items-center w-11/12 mx-auto py-4 rounded-2xl">
+        <div>
+          <h1 className="text-xl font-bold">Dashboard</h1>
         </div>
-      </aside>
+        <div className="flex items-center gap-5">
+          <div>
+            <p className="text-sm font-medium">{user?.displayName}</p>
+            <p className="text-xs text-gray-500">{user?.email}</p>
+          </div>
+          <img
+            src={user?.photoURL || '/placeholder-avatar.png'}
+            alt="User"
+            className="rounded-full w-10 h-10"
+          />
+        </div>
+      </div>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto">
-        {/* Header */}
-        <header className="flex justify-between items-center mb-6">
-         
-        </header>
+      <div className="w-11/12 mx-auto bg-green-200 px-2 pb-2 rounded-xl flex flex-col lg:flex-row">
+        {/* Sidebar */}
+        <aside className="w-full lg:w-64 bg-green-50 rounded-3xl mt-2 p-4 border-r shadow-sm">
+          <Link to="/" className="text-2xl font-bold mb-6 block">
+            Products Hunt
+          </Link>
+          <nav>
+            <ul className="space-y-4">
+              {role === "users" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/myprofile"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      My Profile
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/addProducts"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      Add Product
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/myProducts"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      My Products
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {role === "modarator" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/review"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      Product Review
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/report"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      Reported Contents
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {role === "admin" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/statistics"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      Statistics
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/manageuser"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      Manage Users
+                    </NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
+        </aside>
 
-        {/* Last Tasks */}
-       <Outlet></Outlet>
-
-        {/* Productivity */}
-       
-      </main>
+        {/* Main Content Area */}
+        <main className="flex-1 container mx-auto mt-5 lg:mt-0">
+          <Outlet />
+        </main>
+      </div>
     </div>
-   </div>
   );
 };
 

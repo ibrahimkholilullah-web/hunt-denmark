@@ -9,10 +9,12 @@ import bgImage from '../../../assets/Image/pexels-hannaauramenka-8409851.jpg';
 import { LuMousePointerClick } from 'react-icons/lu';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../AuthProvider/useAuth';
-
+import { FaRegThumbsUp } from "react-icons/fa";
 const Featured = () => {
   const {user} = useAuth()
   const navigate = useNavigate()
+  const [votedProducts, setVotedProducts] = useState({});
+
   const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
@@ -21,7 +23,6 @@ const Featured = () => {
     },
   });
 
-  const [votedProducts, setVotedProducts] = useState({});
 
   const handleUpvote = async (id,email) => {
     if(!user){
@@ -48,36 +49,46 @@ const Featured = () => {
   }
 
   return (
-   <div className='bg-[#F5F5F5]'>
-     <div className=' container mx-auto bg-[#F5F5F5] md:pb-24'>
+    <div className="bg-[#F5F5F5] py-6">
+    <div className="container mx-auto bg-[#F5F5F5] md:pb-24 px-4 md:px-0">
       <Section titel="New Add Products" description="Featured Products" />
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {products.slice(0, 4).map((product) => (
           <div
             key={product._id}
-            className="border-2 hover:bg-brown-50 border-[#54673B] rounded-lg p-4 overflow-hidden flex justify-between items-center gap-3 shadow-lg hover:shadow-xl transition-shadow"
+            className="border-2 hover:bg-brown-50 border-[#54673B] rounded-lg p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-lg hover:shadow-xl transition-shadow"
           >
-            <div className="flex items-center gap-5">
+            {/* Product Image and Name */}
+            <div className="flex items-center gap-4 w-full md:w-auto">
               <img
                 className="w-16 h-16 border border-[#54673B] rounded-full object-cover"
                 src={product.productsImg}
                 alt={product.productName}
               />
-              <div className='flex-col'>
-                <Link to={`/ditails/${product._id}`} className="font-semibold varela items-center gap-2 hover:text-red-500 flex">{product.productName}<LuMousePointerClick />
+              <div className="flex flex-col">
+                <Link
+                  to={`/ditails/${product._id}`}
+                  className="font-semibold varela items-center gap-2 hover:text-red-500 flex"
+                >
+                  {product.productName}
+                  <LuMousePointerClick />
                 </Link>
                 <p className="bg-gray-200 style-new text-sm text-[#54673B] text-center px-2 rounded-full inline-block mb-3">
                   #{product.tags}
                 </p>
               </div>
             </div>
-            <div className="justify-between items-center text-sm">
+  
+            {/* Upvote Section */}
+            <div className="flex justify-between items-center text-sm w-full md:w-auto">
               <div className="flex items-center gap-2 text-lg">
                 <span className="font-bold varela">{product.upvote}</span>
                 <FaClover
                   size={25}
                   onClick={() => handleUpvote(product._id, product.ownerEmail)}
-                  className={`cursor-pointer ${votedProducts[product._id] ? 'text-green-500' : 'text-gray-500'}`}
+                  className={`cursor-pointer ${
+                    votedProducts[product._id] ? 'text-green-500' : 'text-gray-500'
+                  }`}
                 />
               </div>
             </div>
@@ -85,7 +96,8 @@ const Featured = () => {
         ))}
       </div>
     </div>
-   </div>
+  </div>
+  
   );
 };
 
