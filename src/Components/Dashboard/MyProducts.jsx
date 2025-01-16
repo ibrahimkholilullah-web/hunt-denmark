@@ -6,18 +6,19 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import RableRow from './RableRow';
 import Loading from '../Shared/Loading';
+import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
 const MyProducts = () => {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-
+  const secureAxiose = useSecureAxiose()
   // Fetch user's products
   
         const {data :Useremail = [], isLoading, refetch} = useQuery({
           queryKey: ['email', user?.email],
           queryFn: async () =>{
-            const {data} = await axios.get(`${import.meta.env.VITE_PROJECT_APT}/prosycts/${user?.email}/dash`)
+            const {data} = await secureAxiose.get(`/prosycts/${user?.email}/dash`)
             return data
           }
         })
@@ -26,12 +27,12 @@ const MyProducts = () => {
 if(isLoading) return <Loading></Loading>
   return (
     <div>
-      <div>
+      <div className='border-2 border-black m-2 rounded-xl'>
       <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
     <thead>
-      <tr className='text-sm'>
+      <tr className='text-sm border-b-2 border-white'>
         <th>
           NO
         </th>

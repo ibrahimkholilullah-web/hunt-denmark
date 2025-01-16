@@ -11,6 +11,8 @@ import Allproducts from "../Components/AllProducts/Allproducts";
 import ProductsDItails from "../Components/Shared/ProductsDItails";
 import PrivatedRouter from "../Components/PrivatedRouter/PrivatedRouter";
 import UpdatePage from "../Components/Dashboard/UpdatePage";
+import ProductReview from "../Components/Dashboard/Modaretor/ProductReview";
+import ReportedContents from "../Components/Dashboard/Modaretor/ReportedContents";
 
 const router = createBrowserRouter([
     {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
         },
         {
           path:'/update/:id',
-          element: <UpdatePage></UpdatePage>
+          element: <PrivatedRouter><UpdatePage></UpdatePage></PrivatedRouter>
         },
         {
           path : "/login",
@@ -50,15 +52,23 @@ const router = createBrowserRouter([
       children:[
         {
           path:'myprofile',
-          element:<MyProfile></MyProfile>
+          element:<PrivatedRouter><MyProfile></MyProfile></PrivatedRouter>
         },
         {
           path:'addProducts',
-          element:<AddProduct></AddProduct>
+          element:<PrivatedRouter><AddProduct></AddProduct></PrivatedRouter>
         },
         {
           path:'myProducts',
-          element: <MyProducts></MyProducts>
+          element: <PrivatedRouter><MyProducts></MyProducts></PrivatedRouter>
+        },
+         {
+          path:'review',
+          element: <PrivatedRouter><ProductReview></ProductReview></PrivatedRouter>
+        },
+        {
+          path:'report',
+          element: <ReportedContents></ReportedContents>
         }
       ]
     }

@@ -62,8 +62,8 @@ const RegisterPage = () => {
         }
       }
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="grid grid-cols-1 mx-2 border shadow-2xl md:grid-cols-2 max-w-5xl w-full bg-gray-800 rounded-xl overflow-hidden shadow-black">
+    <div className="min-h-screen flex items-center justify-center bg-[#E2E2E2]">
+      <div className="grid grid-cols-1 mx-2 border shadow-2xl md:grid-cols-2 max-w-5xl w-full bg-[#E2E2E2] rounded-xl overflow-hidden shadow-black">
         {/* Left Image Section */}
         <div className="hidden md:flex justify-center relative items-center bg-black/35">
           <iframe
@@ -71,10 +71,10 @@ const RegisterPage = () => {
             src="https://lottie.host/embed/6810e110-5b14-4e55-b878-118bb8246ac8/DDkNpNRhIK.lottie"
           ></iframe>
           <Link
-            to="/"
-            className="absolute rounded-xl bg-[#111827] text-2xl font-bold w-6/12 justify-center flex border-b-2 border-l-2 py-2 text-white md:left-1/4 md:bottom-10"
+            to="/login"
+            className="absolute rounded-xl bg-[#3BB77E] text-2xl font-bold w-6/12 justify-center flex border-b-2 border-l-2 py-2 text-black md:left-1/4 md:bottom-10"
           >
-            Home
+            Login
           </Link>
         </div>
 
@@ -92,12 +92,12 @@ const RegisterPage = () => {
               <input
                 type="text"
                 id="name"
-                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
                 placeholder="Your Name"
                 {...register("name", { required: "Name is required" })}
               />
               {errors.name && (
-                <span className="text-yellow-400 text-sm">
+                <span className="text-[#3BB77E] text-sm">
                   {errors.name.message}
                 </span>
               )}
@@ -111,12 +111,12 @@ const RegisterPage = () => {
               <input
                 type="email"
                 id="email"
-                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
                 placeholder="Your Email"
                 {...register("email", { required: "Email is required" })}
               />
               {errors.email && (
-                <span className="text-yellow-400 text-sm">
+                <span className="text-[#3BB77E] text-sm">
                   {errors.email.message}
                 </span>
               )}
@@ -133,7 +133,7 @@ const RegisterPage = () => {
               <input
                 type={passwordIcon ? "text" : "password"}
                 id="password"
-                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
                 placeholder="Your Password"
                 {...register("password", {
                   required: "Password is required",
@@ -153,7 +153,7 @@ const RegisterPage = () => {
                 })}
               />
               {errors.password && (
-                <span className="text-yellow-400 text-sm">
+                <span className="text-[#3BB77E] text-sm">
                   {errors.password.message}
                 </span>
               )}
@@ -176,10 +176,10 @@ const RegisterPage = () => {
                   type="file"
                   accept="image/*"
                   {...register("image", { required: "Photo is required" })}
-                  className="file-input file-input-bordered bg-[#111827] border-white hover:border-yellow-400 border-2"
+                  className="file-input file-input-bordered bg-[#111827] border-white hover:border-[#3BB77E] border-2"
                 />
                 {errors.image && (
-                  <span className="text-yellow-400">{errors.image.message}</span>
+                  <span className="text-[#3BB77E]">{errors.image.message}</span>
                 )}
               </label>
             </div>
@@ -187,7 +187,7 @@ const RegisterPage = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 rounded-lg font-medium transition"
+              className="w-full bg-[#3BB77E] hover:bg-[#E2E2E2] text-black py-3 rounded-lg font-medium transition"
             >
               {loading ? (
                 <TbFidgetSpinner className="animate-spin mx-auto" />

@@ -2,10 +2,11 @@ import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaHome, FaRegUser } from 'react-icons/fa'
 import useAuth from '../../AuthProvider/useAuth'
+import userRole from '../../hooks/userRole'
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth()
-
+  const [role,isLoading] = userRole()
   const pathName = (
     <>
       <li>
@@ -99,7 +100,12 @@ const Navbar = () => {
                   <li><p className="w-full">{user.displayName || 'Anonymous'}</p></li>
                 </div>
               </div>
-              <li className='border-2 rounded-lg'><Link to='/dadhboard'>Dashboard</Link></li>
+              <li className='border-2 rounded-lg'>
+                <Link to={role === 'users' ? "/dadhboard/myprofile" : role === 'modarator' ? "/dadhboard/review": '/dadhboard'}>
+                  Dashboard
+                </Link>
+              </li>
+
               <li className="mt-1">
                 <Link
                   to="/"

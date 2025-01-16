@@ -49,7 +49,7 @@ const Featured = () => {
 
   return (
    <div className='bg-[#F5F5F5]'>
-     <div className=' container mx-auto bg-[#F5F5F5]'>
+     <div className=' container mx-auto bg-[#F5F5F5] md:pb-24'>
       <Section titel="New Add Products" description="Featured Products" />
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {products.slice(0, 4).map((product) => (

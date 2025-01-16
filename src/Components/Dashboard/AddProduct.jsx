@@ -4,11 +4,12 @@ import { imageUpload } from '../ImageBB/Utilist';
 import useAuth from '../AuthProvider/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
 const AddProduct = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-
+  const axioseSecure = useSecureAxiose()
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -46,11 +47,11 @@ const AddProduct = () => {
 
       console.log(productsInfo);
       try{
-        const {data} = await axios.post(`${import.meta.env.VITE_PROJECT_APT}/products`, productsInfo)
+        const {data} = await axioseSecure.post(`${import.meta.env.VITE_PROJECT_APT}/products`, productsInfo)
         console.log(data)
         form.reset()
         toast.success('Success Fully Add Peoduct')
-
+        navigate('/dadhboard/myProducts')
       }
       catch(err){
         toast.error(err.message)
@@ -60,15 +61,15 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-r-2 border-black w-60 p-2 rounded-lg mx-auto">
+    <div className="container mx-auto p-6 varela">
+      <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-r-2 border-black w-60 varela p-2 rounded-lg mx-auto">
         Add Product
       </h1>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit} className="bg-[#939393] shadow-2xl text-black rounded px-8 pt-6 border-black border-2 pb-8 mb-4">
         {/* Product Name */}
       <div className='md:flex items-center gap-5'>
       <div className="mb-4 md:w-1/2">
-          <label htmlFor="productName" className="block text-gray-700 text-sm font-bold mb-2">
+          <label htmlFor="productName" className="block  text-sm font-bold mb-2">
             Product Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -76,7 +77,7 @@ const AddProduct = () => {
             id="productName"
             name="productName"
             placeholder="Enter product name"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border bg-blue-gray-50 text-sm rounded"
             required
           />
         </div>
@@ -85,7 +86,7 @@ const AddProduct = () => {
         <div className='md:w-1/2 '>
               <label className="form-control text-white w-full">
                 <div className="label">
-                  <span className="label-text">Products Image</span>
+                  <span className="label-text text-black">Products Image</span>
                 </div>
                 <input
                   type="file"
@@ -100,14 +101,14 @@ const AddProduct = () => {
 
         {/* Description */}
         <div className="mb-4">
-          <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
+          <label htmlFor="description" className="block text-sm font-bold mb-2">
             Description <span className="text-red-500">*</span>
           </label>
           <textarea
             id="description"
             name="description"
             placeholder="Enter product description"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border bg-blue-gray-50 text-sm rounded"
             rows="4"
             required
           />
@@ -115,15 +116,15 @@ const AddProduct = () => {
 
         {/* Product Owner Info */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Owner Information:</label>
-          <p className="text-gray-500">Name: {user?.displayName || 'Unknown'}</p>
-          <p className="text-gray-500">Email: {user?.email || 'No email'}</p>
+          <label className="block  text-sm font-bold mb-2">Owner Information:</label>
+          <p className="">Name: {user?.displayName || 'Unknown'}</p>
+          <p className="">Email: {user?.email || 'No email'}</p>
         </div>
 
        <div className='flex items-center gap-5'>
          {/* Tags */}
          <div className="mb-4 md:w-1/2">
-          <label htmlFor="tags" className="block text-gray-700 text-sm font-bold mb-2">
+          <label htmlFor="tags" className="block  text-sm font-bold mb-2">
             Tags
           </label>
           <input
@@ -131,14 +132,14 @@ const AddProduct = () => {
             id="tags"
             name="tags"
             placeholder="Enter product tags"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 bg-blue-gray-50 text-sm border rounded"
             required
           />
         </div>
 
         {/* External Link */}
         <div className="mb-4 md:w-1/2">
-          <label htmlFor="externalLink" className="block text-gray-700 text-sm font-bold mb-2">
+          <label htmlFor="externalLink" className="block text-sm font-bold mb-2">
             External Link
           </label>
           <input
@@ -146,7 +147,7 @@ const AddProduct = () => {
             id="externalLink"
             name="externalLink"
             placeholder="Enter product website or landing page link"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border bg-blue-gray-50 text-sm rounded"
           />
         </div>
 
@@ -154,7 +155,7 @@ const AddProduct = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          className="bg-[#3BB77E] border-2 text-black w-full varela px-4 py-2 rounded hover:bg-[#3BB77E] transition"
         >
           Submit
         </button>

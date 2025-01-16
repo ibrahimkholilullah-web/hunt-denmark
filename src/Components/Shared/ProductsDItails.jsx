@@ -7,8 +7,12 @@ import { useQuery } from '@tanstack/react-query';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import Report from './Report';
+import { GiClick } from 'react-icons/gi';
+import Section from './Section';
+import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
 const ProductsDItails = () => {
+    const axioseSecure = useSecureAxiose()
     const { user } = useAuth();
     const { id } = useParams();
     const [votedProducts, setVotedProducts] = useState({});
@@ -20,7 +24,7 @@ const ProductsDItails = () => {
     const { data: ditails = {}, refetch, isLoading } = useQuery({
         queryKey: ['ditails', id],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_PROJECT_APT}/products/${id}`);
+            const { data } = await axioseSecure.get(`/products/${id}`);
             return data;
         },
     });
@@ -79,31 +83,39 @@ const ProductsDItails = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <div className="p-2">
-            <div className="mb-6 md:flex md:flex-col items-center bg-white shadow-2xl rounded-lg gap-10 border border-black p-4 w-full md:w-8/12 mx-auto">
+        <div className="p-2 bg-[#DBF2E8] varela">
+            <div className="mb-6 md:flex md:flex-col items-center bg-[#F5F5F5] shadow-2xl rounded-lg gap-10 border border-black p-4 w-full md:w-8/12 mx-auto">
                 <img src={productsImg} className="w-full md:w-4/12 h-auto rounded-md" alt="Product" />
                 <div className="w-full">
                     <div className="md:flex justify-between items-center mb-4">
                         <div>
-                            <h1 className="text-2xl font-bold mb-2">{productName}</h1>
-                            <p className="text-sm">Owner: {ownerName}</p>
-                            <p className="text-sm">
-                                <span className="mr-2">Email:</span> {ownerEmail}
-                            </p>
-                        </div>
+                        <div className='flex items-center gap-5'>
                         <img className="w-12 h-12 rounded-full" src={ownerImage} alt="Owner" />
-                    </div>
-                    <p className="text-gray-700 mb-4">{description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="bg-gray-200 px-2 py-1 rounded-full text-sm"># {tags}</span>
+                         <div>
+                         <h1 className="text-2xl font-bold">{productName}</h1>
+                         <p className="text-sm">{ownerName}</p>
+                         </div>
+                        </div>
+                        <p className="text-sm mt-2 inline-flex items-center">
+                            {ownerEmail}
+                        </p>
                         <a
-                            className="bg-blue-gray-50 px-2 py-1 rounded-xl text-sm text-blue-700 hover:text-blue-900"
+                            className="bg-blue-gray-50 px-2 ml-10 inline-flex  items-center gap-1 text-[12px] py-1 rounded-xl text-blue-700 hover:text-blue-900"
                             href={externalLink}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Open Page
+                            Open Page <GiClick className='text-black' />
+
                         </a>
+                        </div>
+                        
+                       
+                    </div>
+                    <p className="text-gray-700 mb-4">{description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="bg-gray-200 px-2 py-1 rounded-full text-sm"># {tags}</span>
+                      
                     </div>
                     <div className="flex items-center gap-4">
                         <button
@@ -121,20 +133,14 @@ const ProductsDItails = () => {
                         <Report ditails={ditails} />
                     </div>
                     <div className="mt-6">
-                        <h3 className="text-xl font-bold mb-4">Post a Review</h3>
-                        <form onSubmit={handleReviewSubmit} className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium">Reviewer Name</label>
-                                <input
-                                    type="text"
-                                    value={user?.displayName || ''}
-                                    readOnly
-                                    className="input input-bordered w-full"
-                                />
-                            </div>
+                        <Section titel='Provited a Review' description='Post a Review'></Section>
+
+                        <form onSubmit={handleReviewSubmit} className="space-y-4 border-2 shadow-2xl p-2 rounded-xl">
+                           
                             <div>
                                 <label className="block text-sm font-medium">Reviewer Image</label>
-                                <img src={user?.photoURL || ''} alt="Reviewer" className="w-16 h-16 rounded-full" />
+                                <img src={user?.photoURL || ''} alt="Reviewer" className="w-12 h-12 rounded-full" />
+                                <p className='text-sm pt-1'>{user?.displayName}</p>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium">Review Description</label>
@@ -161,7 +167,7 @@ const ProductsDItails = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="btn btn-primary bg-blue-500 hover:bg-blue-600 text-white w-full"
+                                className="btn btn-primary bg-[#3BB77E] hover:bg-[#3BB77E] text-black border-none w-full"
                             >
                                 Submit Review
                             </button>

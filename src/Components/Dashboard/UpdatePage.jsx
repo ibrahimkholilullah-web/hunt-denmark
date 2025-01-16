@@ -74,13 +74,14 @@ const navigate = useNavigate()
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-r-2 border-black w-60 p-2 rounded-lg mx-auto">
+    <div className='bg-[#E5F6EE]'>
+      <div className="container mx-auto p-6 varela">
+      <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-r-2 border-black w-60 p-2  rounded-lg mx-auto">
         Update Product
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2"
+        className="bg-[#F5F5F5] shadow-2xl shadow-blue-gray-900 rounded px-8 pt-6 pb-8 mb-4 border-2"
       >
         <div className="md:flex items-center">
           <div className="mb-4 md:w-1/2 md:pr-4">
@@ -93,7 +94,7 @@ const navigate = useNavigate()
               id="productName"
               name="productName"
               placeholder="Enter product name"
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 text-sm border rounded"
               required
             />
           </div>
@@ -121,7 +122,7 @@ const navigate = useNavigate()
             defaultValue={description}
             name="description"
             placeholder="Enter product description"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 text-sm border rounded"
             rows="4"
             required
           />
@@ -137,7 +138,7 @@ const navigate = useNavigate()
             defaultValue={tags}
             name="tags"
             placeholder="Enter product tags"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 text-sm border rounded"
           />
         </div>
 
@@ -151,17 +152,18 @@ const navigate = useNavigate()
             id="externalLink"
             name="externalLink"
             placeholder="Enter product website or landing page link"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 text-sm py-2 border rounded"
           />
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          className="bg-[#6DB87E] w-full text-black px-4 py-2 rounded hover:bg-[#6DB87E] transition"
         >
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 };

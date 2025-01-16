@@ -1,5 +1,7 @@
 import React from 'react';
+import { BiCommentDetail } from 'react-icons/bi';
 import { TbHandClick } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 
 const Card = ({card}) => {
     const { productName,
@@ -12,9 +14,9 @@ const Card = ({card}) => {
         ownerEmail,
         upvote,
         vote,
-        status} = card
+        status, _id} = card
     return (
-        <div className="card border-2 p-2 card-compact bg-[#E9E9E9] shadow-xl">
+        <div className="card relative border-2 p-2 card-compact bg-[#E9E9E9] shadow-xl">
         <figure>
           <img 
             className='h-64 w-full border-2 rounded-xl object-cover'
@@ -31,6 +33,8 @@ const Card = ({card}) => {
           <p className=' bg-blue-gray-50'># {tags}</p>
           
         </div>
+        <Link to={`/ditails/${_id}`} className=' absolute right-5 bottom-5 '><BiCommentDetail size={25} />
+          </Link>
       </div>
     );
 };

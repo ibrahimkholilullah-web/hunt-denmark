@@ -1,33 +1,47 @@
 import React, { useState } from 'react';
 import useAuth from '../AuthProvider/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Loading from '../Shared/Loading';
+import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
 const MyProfile = () => {
   const { user } = useAuth();
+  const axioseSecure = useSecureAxiose()
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const subscriptionAmount = 10;
-
+    const {data : profile = {}, isLoading} = useQuery({
+      queryKey : ['profile',user?.email],
+      queryFn: async () =>{
+        const {data} = await axioseSecure.get(`/myprofile/${user?.email}`)
+        return data
+      }
+    })
+    console.log(profile)
+    const {name, email, image, role} = profile
   // Simulate Payment Success
   const handlePayment = () => {
     setIsSubscribed(true);
     setShowPaymentModal(false);
     // Add backend integration to save subscription status here
   };
-
+ if(isLoading) return <Loading></Loading>
   return (
-    <div className="container mx-auto p-6 mt-56 ">
-      <div className="bg-gray-100 shadow-lg rounded-lg p-6 text-center">
+    <div className="container mx-auto p-6 mt-56 varela ">
+      <div className="bg-gray-100 shadow-lg w-6/12 mx-auto rounded-lg p-6 text-center">
         {/* User's Image */}
         <img
-          src={user?.photoURL || 'https://via.placeholder.com/150'}
+          src={image || 'https://via.placeholder.com/150'}
           alt="User"
-          className="w-16 h-16 rounded-full mx-auto mb-4"
+          className="w-12 h-12 rounded-full mx-auto mb-4"
         />
+        <h1 className='bg-green-400 rounded-lg w-32 mx-auto text-white'>{role}</h1>
         {/* User's Name */}
-        <h1 className="text-2xl font-bold mb-2">{user?.displayName || 'Guest User'}</h1>
+        <h1 className="text-2xl font-bold mb-2">{name || 'Guest User'}</h1>
         {/* User's Email */}
-        <p className="text-gray-600 mb-4">{user?.email || 'No email available'}</p>
+        <p className="text-gray-600 mb-4">{email || 'No email available'}</p>
 
         {/* Membership Subscription Button */}
         {!isSubscribed ? (

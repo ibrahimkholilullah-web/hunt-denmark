@@ -28,14 +28,14 @@ const TrendingProducts = () => {
     if(isLoading) return <Loading></Loading>
     console.log(tranding)
     return (
-       <div className='bg-[#FFFFFF]'>
-         <div className='container mx-auto'>
+       <div className=' place-items-center bg-gradient-to-b from-[#3BB77E]/20  to-white/40 '>
+         <div className='container mx-auto md:pb-20'>
             <Section titel='New Trending' description='Trending Products'></Section>
             <div className='px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     tranding.map(tranfing => (
                         <div key={tranfing._id}>
-                            <div className="card hover:bg-brown-50 border rounded-lg  bg-base-100  shadow-xl">
+                            <div className="card bg-[#FBFDFC] hover:bg-[#E5F6EE] border rounded-lg py-4  shadow-xl">
                               <figure>
                                 <img
                                   className='h-44 w-44  rounded-full object-cover'
@@ -43,13 +43,13 @@ const TrendingProducts = () => {
                                   alt="Shoes" />
                               </figure>
                               <div className="card-body">
-                                <h2 className="card-title">
+                                <h2 className="card-title varela">
                                   {tranfing.productName}
                                   <div className="badge badge-secondary">NEW</div>
                                 </h2>
-                                <p>{tranfing.description.slice(0,50)}...</p>
+                                <p className='style-new'>{tranfing.description.slice(0,50)}...</p>
                                 <div className="card-actions justify-end">
-                                  <div className="badge badge-outline">{tranfing.upvote}</div>
+                                  <div className="badge badge-outline varela">{tranfing.upvote}</div>
                                   <div className="badge badge-outline">Vote</div>
                                 </div>
                               </div>
@@ -58,7 +58,7 @@ const TrendingProducts = () => {
                     ))
                 }
             </div>
-            <Link to='/allProducts' className='btn w-36 my-8 border-2 bg-[#54673B] hover:bg-green-900 flex mx-auto text-white  rounded-none '>View More <FcNext className='text-white' size={20} />
+            <Link to='/allProducts' className='btn w-36 my-8 border-2 bg-[#3BB77E] hover:bg-[#3BB77E] flex mx-auto   rounded-none varela'>View More <FcNext className='text-[#3BB77E]' size={20} />
             </Link>
         </div>
        </div>

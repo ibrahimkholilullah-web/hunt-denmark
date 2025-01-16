@@ -3,8 +3,11 @@ import React from 'react';
 import banner1 from "../../../assets/Image/banner1.jpg";
 import banner2 from "../../../assets/Image/banner2.jpg";
 import banner3 from "../../../assets/Image/banner3.jpg";
+import userRole from '../../hooks/userRole';
 
 const Banner = () => {
+    const [role,isLoading] = userRole()
+    console.log("role",role)
     return (
      <div className='bg-[#BCE3C9] '>
            <Carousel className="h-[50vh] w-11/12  mx-auto sm:h-[60vh] md:h-[70vh] lg:h-[70vh] xl:h-[80vh]">
