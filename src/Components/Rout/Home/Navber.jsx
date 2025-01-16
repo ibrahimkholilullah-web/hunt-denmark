@@ -101,7 +101,7 @@ const Navbar = () => {
                 </div>
               </div>
               <li className='border-2 rounded-lg'>
-                <Link to={role === 'users' ? "/dadhboard/myprofile" : role === 'modarator' ? "/dadhboard/review": '/dadhboard'}>
+                <Link to={role === 'users' ? "/dadhboard/myprofile" : role === 'modarator' ? "/dadhboard/review": '/dadhboard/statistics'}>
                   Dashboard
                 </Link>
               </li>

@@ -57,6 +57,18 @@ const Dashboard = () => {
             </ul>
             </>
            }
+           {
+            role === 'admin' && <>
+            <ul>
+            <li>
+            <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/statistics'>Statistics</NavLink>
+            </li>
+            <li>
+            <NavLink className="flex items-center text-gray-700 font-medium" to='/dadhboard/manageuser'>Manage Users</NavLink>
+            </li>
+            </ul>
+            </>
+           }
 
            
           </ul>

@@ -10,7 +10,6 @@ const useSecureAxiose = () => {
     axioseSecure.interceptors.request.use(function(config){
         const token = localStorage.getItem('token')
         config.headers.authorization = `Bearer ${token}`
-        console.log("request stop", token)
         return config;
     },function (error) {
         // Do something with request error

@@ -13,6 +13,8 @@ import PrivatedRouter from "../Components/PrivatedRouter/PrivatedRouter";
 import UpdatePage from "../Components/Dashboard/UpdatePage";
 import ProductReview from "../Components/Dashboard/Modaretor/ProductReview";
 import ReportedContents from "../Components/Dashboard/Modaretor/ReportedContents";
+import ManageUser from "../Components/Dashboard/Admin/ManageUser";
+import Statistics from "../Components/Dashboard/Admin/Statistics";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +71,14 @@ const router = createBrowserRouter([
         {
           path:'report',
           element: <ReportedContents></ReportedContents>
+        },
+        {
+          path:'manageuser',
+          element: <PrivatedRouter><ManageUser></ManageUser></PrivatedRouter>
+        },
+        {
+          path:'statistics',
+          element: <PrivatedRouter><Statistics></Statistics></PrivatedRouter>
         }
       ]
     }
