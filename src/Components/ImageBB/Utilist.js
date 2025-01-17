@@ -11,6 +11,7 @@ export const saveUser = async (user) =>{
     await axios.post(`${import.meta.env.VITE_PROJECT_APT}/users/${user.email}`,{
         name : user?.displayName,
         email: user?.email,
-        image: user?.photoURL
+        image: user?.photoURL,
+        status: "pending"
     })
 }

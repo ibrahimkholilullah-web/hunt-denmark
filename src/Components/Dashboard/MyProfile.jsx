@@ -17,14 +17,14 @@ const MyProfile = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  const { data: profile = {}, isLoading } = useQuery({
+  const { data: profile = {}, isLoading, refetch } = useQuery({
     queryKey: ['profile', user?.email],
     queryFn: async () => {
       const { data } = await axioseSecure.get(`/myprofile/${user?.email}`);
       return data;
     },
   });
-  const { name, email, image, role } = profile;
+  const { name, email, image, role,status, _id } = profile;
 
   if (isLoading) return <Loading />;
 
@@ -37,11 +37,13 @@ const MyProfile = () => {
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
           <p>{email}</p>
-          <button onClick={()=>document.getElementById('my_modal_3').showModal()}
+           {
+            status === 'verify' ? <button className="bg-green-800 py-2 text-white rounded-xl">Verify</button> : <button onClick={()=>document.getElementById('my_modal_3').showModal()}
             className="btn btn-primary"
           >
             Membership Subscribe $10
           </button>
+           }
         </div>
       </div>
       <dialog id="my_modal_3" className="modal">
@@ -56,7 +58,7 @@ const MyProfile = () => {
             <h1 className="text-sm text-center">{name}</h1>
             <p className="text-center text-sm pb-5">Payment $10</p>
             <Elements stripe={stripePromise}>
-                <CheckoutForm></CheckoutForm>
+                <CheckoutForm id={_id} refetch={refetch}></CheckoutForm>
             </Elements>
           </div>
         </div>

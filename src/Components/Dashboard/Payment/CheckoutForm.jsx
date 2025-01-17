@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
 import useAuth from '../../AuthProvider/useAuth';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({id,refetch}) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -75,10 +75,12 @@ const CheckoutForm = () => {
 
             try {
               const res = await axioseSecure.post('/payment', payment);
-              console.log('Payment saved:', res.data);
               const modal = document.getElementById('my_modal_3');
+              axioseSecure.patch(`/user/${id}`)
+              refetch()
               if (modal && typeof modal.close === 'function') {
                   modal.close();
+                  refetch()
               } else {
                   console.error('Element is not a dialog or does not support close()');
               }

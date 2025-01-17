@@ -87,6 +87,7 @@ const ProductsDItails = () => {
 
     return (
         <div className="p-2 bg-[#DBF2E8] varela min-h-screen">
+          <Section titel='Prducts Info' description='Single Products Ditails'></Section>
   <div className="container mx-auto py-4 px-4 md:px-0">
     {/* Product Image and Details */}
     <div className="flex flex-col md:flex-row items-start gap-6">

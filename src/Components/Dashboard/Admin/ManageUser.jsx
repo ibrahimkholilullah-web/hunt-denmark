@@ -16,6 +16,7 @@ const ManageUser = () => {
             return data
         }
     })
+   
     if(isLoading)return <Loading></Loading>
     return (
         <div>
