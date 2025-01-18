@@ -46,7 +46,7 @@ const ProductsReviewTabel = ({ review, inx, refetch }) => {
             </td>
             <td>
                 <p
-                    className={`px-2 py-1 rounded-lg text-white ${
+                    className={`px-2 py-1 rounded-lg text-black ${
                         status === 'pending' ? 'bg-yellow-400' :
                         status === 'reject' ? 'bg-gray-400' :
                         'bg-green-600'

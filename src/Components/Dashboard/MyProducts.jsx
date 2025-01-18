@@ -7,6 +7,7 @@ import axios from 'axios';
 import RableRow from './RableRow';
 import Loading from '../Shared/Loading';
 import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
+import { Helmet } from 'react-helmet-async';
 
 const MyProducts = () => {
   const { user } = useAuth();
@@ -27,6 +28,9 @@ const MyProducts = () => {
 if(isLoading) return <Loading></Loading>
   return (
     <div>
+                 <Helmet>
+              <title> HUND Denmark || My Products</title>
+            </Helmet>
       <div className='border-2 border-black m-2 rounded-xl'>
       <div className="overflow-x-auto">
   <table className="table">

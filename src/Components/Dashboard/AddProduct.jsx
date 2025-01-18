@@ -5,9 +5,11 @@ import useAuth from '../AuthProvider/useAuth';
 import toast from 'react-hot-toast';
 import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const AddProduct = () => {
   const { user } = useAuth();
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const axioseSecure = useSecureAxiose();
 
@@ -30,12 +32,14 @@ const AddProduct = () => {
   });
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
 
     const onerEmail = product.length > 0;
     const userStatus = users?.status === 'pending';
 
     if (onerEmail && userStatus) {
+      setLoading(false)
       return toast.error('Please verify your account or product limit reached.');
     }
 
@@ -76,15 +80,21 @@ const AddProduct = () => {
       const { data } = await axioseSecure.post(`/products`, productsInfo);
       toast.success('Product added successfully!');
       navigate('/dadhboard/myProducts');
+      form.reset();
     } catch (err) {
       toast.error('Failed to add product. Try again.');
+    }finally{
+      setLoading(false)
     }
 
-    form.reset();
+    
   };
 
   return (
     <div className="container mx-auto p-6 font-varela">
+                 <Helmet>
+              <title> HUND Denmark || Add Products</title>
+            </Helmet>
       <h1 className="text-2xl font-bold mb-6 text-center border-b-4 border-r-4 border-gray-700 w-fit p-3 rounded-lg mx-auto">
         Add Product
       </h1>
@@ -179,7 +189,11 @@ const AddProduct = () => {
           type="submit"
           className="bg-green-500 text-white w-full px-4 py-3 rounded-lg hover:bg-green-600 transition ease-in-out duration-300"
         >
-          Submit
+          {loading ? (
+            <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Submit"
+              )}
         </button>
       </form>
     </div>

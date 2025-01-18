@@ -4,6 +4,7 @@ import Card from './Card';
 import { FcNext, FcPrevious } from 'react-icons/fc';
 import useAuth from '../AuthProvider/useAuth';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const AllProducts = () => {
   const [search, setSearch] = useState('');
@@ -69,6 +70,11 @@ const AllProducts = () => {
 
   return (
     <div className='bg-[#F5F5F5] min-h-screen'>
+      <div>
+                      <Helmet>
+                          <title> HUND Denmark || All Products</title>
+                      </Helmet>
+                  </div>
       <div className="container md:pt-10 mx-auto min-h-screen">
       <div className="w-8/12 mx-auto mb-8">
         <label className="input input-bordered rounded-3xl flex items-center gap-2">

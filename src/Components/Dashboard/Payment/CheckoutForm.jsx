@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
 import useAuth from '../../AuthProvider/useAuth';
 
-const CheckoutForm = ({id,refetch}) => {
+const CheckoutForm = ({id,refetch,amount}) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
-    const [transactionId, setTransactionId] = useState('');
     const axioseSecure = useSecureAxiose();
     const { user } = useAuth();
-    const totalPrices = 10
+    const totalPrices = amount ? amount : 100
     const stripe = useStripe();
     const elements = useElements();
+    const [loading, setLoading] = useState(false)
 
     if(totalPrices> 0){
         useEffect(() => {
@@ -24,6 +24,7 @@ const CheckoutForm = ({id,refetch}) => {
     }
 
     const handleSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault();
 
         if (!stripe || !elements) {
@@ -62,7 +63,6 @@ const CheckoutForm = ({id,refetch}) => {
         }
 
         if (paymentIntent?.status === 'succeeded') {
-            setTransactionId(paymentIntent.id);
 
             const payment = {
                 email: user?.email,
@@ -86,6 +86,8 @@ const CheckoutForm = ({id,refetch}) => {
               }
           } catch (err) {
               console.error('Error saving payment:', err);
+          }finally{
+            setLoading(false)
           }
           
         }
@@ -95,6 +97,7 @@ const CheckoutForm = ({id,refetch}) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <CardElement
+                   className='border-2 rounded-lg p-2'
                     options={{
                         style: {
                             base: {
@@ -110,11 +113,14 @@ const CheckoutForm = ({id,refetch}) => {
                         },
                     }}
                 />
-                <button type="submit" className="border p-2 bg-green-300" disabled={!stripe}>
-                    Pay
+                <button type="submit" className="text-white hover:border hover:border-black hover:bg-[#BCE3C9] px-8 bg-[#3BB77E] btn w-full my-2 rounded-lg" disabled={!stripe}>
+                {loading ? (
+                    <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                `Pay $ ${totalPrices}`
+              )}
                 </button>
                 <p className="text-red-700 text-sm">{error}</p>
-                {transactionId && <p>Success! Payment ID: {transactionId}</p>}
             </form>
         </div>
     );

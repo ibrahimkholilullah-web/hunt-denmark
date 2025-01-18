@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Pie, PieChart, Tooltip } from 'recharts';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
+import { Helmet } from 'react-helmet-async';
 
 const Statistics = () => {
     const axioseSecure = useSecureAxiose()
@@ -34,8 +35,13 @@ const Statistics = () => {
   ];
 
   return (
-    <div className="text-white flex justify-center items-center h-screen">
-      <PieChart width={730} height={350}>
+  <div>
+               <Helmet>
+              <title> Admin Page || Statistics </title>
+            </Helmet>
+      <div className="text-white text-sm flex justify-center items-center">
+      
+      <PieChart width={800} height={600}>
        
         <Pie
           data={data02}
@@ -61,6 +67,7 @@ const Statistics = () => {
         <Tooltip />
       </PieChart>
     </div>
+  </div>
   );
 };
 

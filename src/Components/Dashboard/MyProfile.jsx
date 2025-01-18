@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./Payment/CheckoutForm";
+import { Helmet } from "react-helmet-async";
 
 
 const MyProfile = () => {
@@ -30,20 +31,26 @@ const MyProfile = () => {
 
   return (
     <div className="container mx-auto p-6 mt-24">
+           <Helmet>
+              <title> HUND Denmark || My Profile</title>
+            </Helmet>
       <div className="card bg-base-100 mx-auto flex w-96 shadow-xl">
         <figure>
           <img className="w-16 h-16 rounded-full mt-5" src={image} alt="Profile" />
         </figure>
+        <p className="mx-auto bg-green-300 px-1 mt-2 text-sm rounded-xl">{role}</p>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
           <p>{email}</p>
+          
            {
-            status === 'verify' ? <button className="bg-green-800 py-2 text-white rounded-xl">Verify</button> : <button onClick={()=>document.getElementById('my_modal_3').showModal()}
-            className="btn btn-primary"
+            status === 'verify' ? <button className="bg-green-600 py-2 text-white rounded-xl">Verify</button> : <button onClick={()=>document.getElementById('my_modal_3').showModal()}
+            className="text-black hover:border hover:border-black hover:bg-[#BCE3C9] px-8 bg-[#3BB77E] btn rounded-none"
           >
             Membership Subscribe $10
           </button>
            }
+           
         </div>
       </div>
       <dialog id="my_modal_3" className="modal">

@@ -34,6 +34,18 @@ const Navbar = () => {
           All Products
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 border-[#3BB77E] hover:bg-none rounded-none text-whit pb-1 "
+              : "hover:border-b-2 hover:border-[#3BB77E] hover:rounded-none"
+          }
+        >
+          About Me
+        </NavLink>
+      </li>
      
     </>
   )

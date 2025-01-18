@@ -17,7 +17,6 @@ const TrendingProducts = () => {
     })
     
     if(isLoading) return <Loading></Loading>
-    console.log(tranding)
     return (
        <div className=' place-items-center bg-gradient-to-b from-[#3BB77E]/20  to-white/40 '>
          <div className='container mx-auto md:pb-20'>

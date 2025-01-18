@@ -10,6 +10,8 @@ import Report from './Report';
 import { GiClick } from 'react-icons/gi';
 import Section from './Section';
 import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
+import { Helmet, HelmetData } from 'react-helmet-async';
+import { FaSquareCaretUp } from 'react-icons/fa6';
 
 const ProductsDItails = () => {
     const axioseSecure = useSecureAxiose()
@@ -87,6 +89,9 @@ const ProductsDItails = () => {
 
     return (
         <div className="p-2 bg-[#DBF2E8] varela min-h-screen">
+          <Helmet>
+            <title> HUND Denmark || Ditails</title>
+          </Helmet>
           <Section titel='Prducts Info' description='Single Products Ditails'></Section>
   <div className="container mx-auto py-4 px-4 md:px-0">
     {/* Product Image and Details */}
@@ -138,7 +143,7 @@ const ProductsDItails = () => {
             onClick={() => handleUpvote(_id)}
             className="flex items-center gap-2 px-4 py-2 bg-[#54673B] text-white rounded-md hover:bg-green-900"
           >
-            <FaRegThumbsUp /> ({upvote})
+            <FaSquareCaretUp /> ({upvote})
           </button>
           <button
             onClick={() => document.getElementById("my_modal_3").showModal()}

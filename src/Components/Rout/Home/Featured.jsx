@@ -6,7 +6,7 @@ import { FaClover } from 'react-icons/fa6';
 import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading';
 import bgImage from '../../../assets/Image/pexels-hannaauramenka-8409851.jpg';
-import { LuMousePointerClick } from 'react-icons/lu';
+import { LuArrowUpWideNarrow, LuMousePointerClick } from 'react-icons/lu';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../AuthProvider/useAuth';
 import { FaRegThumbsUp } from "react-icons/fa";
@@ -83,7 +83,7 @@ const Featured = () => {
             <div className="flex justify-between items-center text-sm w-full md:w-auto">
               <div className="flex items-center gap-2 text-lg">
                 <span className="font-bold varela">{product.upvote}</span>
-                <FaClover
+                <LuArrowUpWideNarrow
                   size={25}
                   onClick={() => handleUpvote(product._id, product.ownerEmail)}
                   className={`cursor-pointer ${

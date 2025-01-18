@@ -5,6 +5,7 @@ import axios from 'axios';
 import RableRow from '../RableRow';
 import ProductsReviewTabel from './ProductsReviewTabel';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
+import { Helmet } from 'react-helmet-async';
 
 const ProductReview = () => {
   const axioseSecure = useSecureAxiose()
@@ -20,6 +21,9 @@ console.log(panding)
 if(isLoading) return <Loading></Loading>
     return (
         <div>
+           <Helmet>
+              <title> HUND Denmark || Products Review</title>
+            </Helmet>
         <div className='border-2 border-black m-2 rounded-xl'>
         <div className="overflow-x-auto">
     <table className="table">

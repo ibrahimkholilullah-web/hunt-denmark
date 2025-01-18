@@ -5,6 +5,7 @@ import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
 import RableRow from '../RableRow';
 import UsersTabel from './UsersTabel';
 import Loading from '../../Shared/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const ManageUser = () => {
     const secureAxiose = useSecureAxiose()
@@ -20,6 +21,9 @@ const ManageUser = () => {
     if(isLoading)return <Loading></Loading>
     return (
         <div>
+                     <Helmet>
+              <title> Admin Page || MAnage User</title>
+            </Helmet>
       <div className='border-2 border-black m-2 rounded-xl'>
       <div className="overflow-x-auto">
   <table className="table">

@@ -3,12 +3,15 @@ import axios from 'axios';
 import React from 'react';
 import Loading from '../../Shared/Loading';
 import ContextRepotable from './ContextRepotable';
+import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
+import { Helmet } from 'react-helmet-async';
 
 const ReportedContents = () => {
+  const secureAxiose = useSecureAxiose()
     const { data: report = [], isLoading, refetch } = useQuery({
         queryKey: ['report'],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_PROJECT_APT}/report`);
+            const { data } = await secureAxiose.get(`/report`);
             return data;
         }
     });
@@ -17,6 +20,9 @@ const ReportedContents = () => {
 
     return (
         <div>
+                       <Helmet>
+                          <title> HUND Denmark || Reportes Contents</title>
+                        </Helmet>
             <div className='border-2 border-black m-2 rounded-xl'>
                 <div className="overflow-x-auto">
                     {

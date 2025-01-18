@@ -186,7 +186,7 @@ const RegisterPage = () => {
               className="w-full bg-[#3BB77E] hover:bg-[#E2E2E2] text-black py-3 rounded-lg font-medium transition"
             >
               {loading ? (
-                <TbFidgetSpinner className="animate-spin mx-auto" />
+                <span className="loading loading-spinner loading-md"></span>
               ) : (
                 "Sign Up"
               )}

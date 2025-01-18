@@ -15,6 +15,10 @@ import ProductReview from "../Components/Dashboard/Modaretor/ProductReview";
 import ReportedContents from "../Components/Dashboard/Modaretor/ReportedContents";
 import ManageUser from "../Components/Dashboard/Admin/ManageUser";
 import Statistics from "../Components/Dashboard/Admin/Statistics";
+import ModaretorRout from "../Components/SellerRout/ModaretorRout";
+import ManageCoupon from "../Components/Dashboard/Admin/ManageCoupon";
+import AboutMe from "../Components/MyAbout/AboutMe";
+import MembershipPage from "../Components/Dashboard/Admin/MembershipPage";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +45,10 @@ const router = createBrowserRouter([
           path : "/login",
           element: <Login></Login>
         },
+        {
+          path: "about",
+          element: <AboutMe></AboutMe>
+        }
       ]
     },
     
@@ -61,16 +69,26 @@ const router = createBrowserRouter([
           element:<PrivatedRouter><AddProduct></AddProduct></PrivatedRouter>
         },
         {
+          path:'membership',
+          element: <MembershipPage></MembershipPage>
+        },
+        {
           path:'myProducts',
           element: <PrivatedRouter><MyProducts></MyProducts></PrivatedRouter>
         },
          {
           path:'review',
-          element: <PrivatedRouter><ProductReview></ProductReview></PrivatedRouter>
+          element: <PrivatedRouter>
+            <ModaretorRout>
+            <ProductReview></ProductReview>
+            </ModaretorRout>
+            </PrivatedRouter>
         },
         {
           path:'report',
-          element: <ReportedContents></ReportedContents>
+          element: <PrivatedRouter>
+            <ModaretorRout><ReportedContents></ReportedContents></ModaretorRout>
+          </PrivatedRouter>
         },
         {
           path:'manageuser',
@@ -79,6 +97,12 @@ const router = createBrowserRouter([
         {
           path:'statistics',
           element: <PrivatedRouter><Statistics></Statistics></PrivatedRouter>
+        },
+        {
+          path:'cupons',
+         element: <PrivatedRouter>
+          <ManageCoupon></ManageCoupon>
+         </PrivatedRouter>
         },
        
       ]

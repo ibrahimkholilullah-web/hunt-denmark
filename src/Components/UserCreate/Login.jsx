@@ -7,7 +7,7 @@ import { saveUser } from '../ImageBB/Utilist';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-    const {googleSignInUser,signUser} = useAuth()
+    const {googleSignInUser,signUser,loading} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
     const handleSubmit =async (e) => {
@@ -22,12 +22,13 @@ const Login = () => {
           //User Login
           await signUser(email, password)
             // Close the modal
-          navigate(location?.state ? location?.state : "/")
+          
           
          
            toast.success('Login Successful',{
             position: 'top-left'
            })
+           navigate(location?.state ? location?.state : "/")
         } catch (err) {
           console.log(err)
           toast.error(err?.message, {
@@ -98,7 +99,12 @@ const Login = () => {
               type="submit"
               className="w-full bg-[#3BB781] hover:bg-[#3BB781] text-white py-2 rounded-md transition"
             >
-              Login
+              {loading ? (
+                 <span className="loading loading-spinner p-0 loading-md"></span>
+                ) : (
+                  "Login"
+                )}
+              
             </button>
           </form>
           <button

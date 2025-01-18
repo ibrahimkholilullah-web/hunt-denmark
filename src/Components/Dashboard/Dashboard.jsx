@@ -7,8 +7,8 @@ const Dashboard = () => {
   const { user } = useAuth();
   const [role, isLoading] = userRole();
 
-  const activeLinkClass = "text-blue-500 font-bold";
-  const defaultLinkClass = "text-gray-700 hover:text-blue-400";
+  const activeLinkClass = "text-black hover:bg-[#E8F5E9] border-2 font-bold btn bg-[#3BB77F] w-full";
+  const defaultLinkClass = "text-black hover:bg-[#E8F5E9] border-2 hover:text-blue-400 btn bg-[#3BB77F] w-full";
 
   return (
     <div className="bg-[#BCE3C9] min-h-screen varela">
@@ -34,8 +34,8 @@ const Dashboard = () => {
       <div className="w-11/12 mx-auto bg-green-200 px-2 pb-2 rounded-xl flex flex-col lg:flex-row">
         {/* Sidebar */}
         <aside className="w-full lg:w-64 bg-green-50 rounded-3xl mt-2 p-4 border-r shadow-sm">
-          <Link to="/" className="text-2xl font-bold mb-6 block">
-            Products Hunt
+          <Link to="/" className="text-2xl font-bold mb-6 block text-center">
+          HUND Denmark
           </Link>
           <nav>
             <ul className="space-y-4">
@@ -119,6 +119,16 @@ const Dashboard = () => {
                       Manage Users
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      to="/dadhboard/cupons"
+                      className={({ isActive }) =>
+                        isActive ? activeLinkClass : defaultLinkClass
+                      }
+                    >
+                      Manage Cupons
+                    </NavLink>
+                  </li>
                 </>
               )}
             </ul>
@@ -126,7 +136,7 @@ const Dashboard = () => {
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 container mx-auto mt-5 lg:mt-0">
+        <main className="flex-1 container mx-auto mt-2">
           <Outlet />
         </main>
       </div>

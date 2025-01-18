@@ -5,6 +5,7 @@ import { TbHandClick } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../AuthProvider/useAuth';
 import toast from 'react-hot-toast';
+import { MdOutlineSupervisorAccount } from 'react-icons/md';
 
 const Card = ({ card  }) => {
 
@@ -34,7 +35,8 @@ const Card = ({ card  }) => {
           <button
             className="flex items-center gap-2 cursor-pointer bg-[#54673B] w-16 justify-center text-white p-1 rounded-lg"
           >
-            
+            <MdOutlineSupervisorAccount />
+
             {upvote}
           </button>
         </div>
