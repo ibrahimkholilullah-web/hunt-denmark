@@ -34,7 +34,7 @@ const UsersTabel = ({ user, inx, refetch }) => {
         <span
           className={`px-2 py-1 rounded-md text-[#253D4E] ${
             role === 'admin'
-              ? 'bg-green-500'
+              ? 'bg-[#5CB360]'
               : role === 'modarator'
               ? 'bg-blue-500'
               : 'bg-gray-400'

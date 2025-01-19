@@ -72,6 +72,7 @@ const Featured = () => {
                 >
                   {product.productName}
                   <LuMousePointerClick />
+                  <span className='text-[12px] bg-amber-200 px-1 rounded-3xl'>New </span>
                 </Link>
                 <p className="bg-gray-200 style-new text-sm text-[#54673B] text-center px-2 rounded-full inline-block mb-3">
                   #{product.tags}

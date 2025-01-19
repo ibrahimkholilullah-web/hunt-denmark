@@ -62,7 +62,9 @@ const router = createBrowserRouter([
       children:[
         {
           path:'myprofile',
-          element:<PrivatedRouter><MyProfile></MyProfile></PrivatedRouter>
+          element:<PrivatedRouter>
+            <MyProfile></MyProfile>
+            </PrivatedRouter>
         },
         {
           path:'addProducts',

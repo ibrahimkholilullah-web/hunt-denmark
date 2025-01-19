@@ -35,7 +35,7 @@ const TrendingProducts = () => {
                               <div className="card-body">
                                 <h2 className="card-title varela">
                                   {tranfing.productName}
-                                  <div className="badge badge-secondary">NEW</div>
+                                  <div className="badge border-2 bg-green-50 style-new text-[10px]">Most Popular</div>
                                 </h2>
                                 <p className='style-new'>{tranfing.description.slice(0,50)}...</p>
                                 <div className="card-actions justify-end">

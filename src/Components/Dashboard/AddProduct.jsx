@@ -1,46 +1,48 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { imageUpload } from '../ImageBB/Utilist';
-import useAuth from '../AuthProvider/useAuth';
-import toast from 'react-hot-toast';
-import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
-import { useQuery } from '@tanstack/react-query';
-import { Helmet } from 'react-helmet-async';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { imageUpload } from "../ImageBB/Utilist";
+import useAuth from "../AuthProvider/useAuth";
+import toast from "react-hot-toast";
+import useSecureAxiose from "../useSecureAxiose/useSecureAxiose";
+import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const AddProduct = () => {
   const { user } = useAuth();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const axioseSecure = useSecureAxiose();
 
   const { data: product = [] } = useQuery({
-    queryKey: ['oneremail'],
+    queryKey: ["oneremail"],
     queryFn: async () => {
-      const { data } = await axioseSecure.get(`/productssubscribe/${user?.email}`);
+      const { data } = await axioseSecure.get(
+        `/productssubscribe/${user?.email}`
+      );
       return data;
     },
-    onError: () => toast.error('Failed to fetch product data'),
+    onError: () => toast.error("Failed to fetch product data"),
   });
-   console.log(product)
+
   const { data: users = {} } = useQuery({
-    queryKey: ['userEmail'],
+    queryKey: ["userEmail"],
     queryFn: async () => {
       const { data } = await axioseSecure.get(`/userStatus/${user?.email}`);
       return data;
     },
-    onError: () => toast.error('Failed to fetch user data'),
+    onError: () => toast.error("Failed to fetch user data"),
   });
 
   const handleSubmit = async (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
 
     const onerEmail = product.length > 0;
-    const userStatus = users?.status === 'pending';
+    const userStatus = users?.status === "pending";
 
     if (onerEmail && userStatus) {
-      setLoading(false)
-      return toast.error('Please verify your account or product limit reached.');
+      setLoading(false);
+      return toast.error("Please verify your account or product limit reached.");
     }
 
     const form = e.target;
@@ -48,19 +50,19 @@ const AddProduct = () => {
     const description = form.description.value.trim();
     const tags = form.tags.value.trim();
     const externalLink = form.externalLink.value.trim();
-    const ownerName = user?.displayName || 'Unknown';
-    const ownerImage = user?.photoURL || '';
-    const ownerEmail = user?.email || 'No email';
+    const ownerName = user?.displayName || "Unknown";
+    const ownerImage = user?.photoURL || "";
+    const ownerEmail = user?.email || "No email";
     const upvote = 0;
-    const status = 'pending';
+    const status = "pending";
 
     const productImage = form.image.files[0];
-    let productsImg = '';
+    let productsImg = "";
 
     try {
       productsImg = await imageUpload(productImage);
     } catch (error) {
-      return toast.error('Image upload failed. Please try again.');
+      return toast.error("Image upload failed. Please try again.");
     }
 
     const productsInfo = {
@@ -78,23 +80,21 @@ const AddProduct = () => {
 
     try {
       const { data } = await axioseSecure.post(`/products`, productsInfo);
-      toast.success('Product added successfully!');
-      navigate('/dadhboard/myProducts');
+      toast.success("Product added successfully!");
+      navigate("/dashboard/myProducts");
       form.reset();
     } catch (err) {
-      toast.error('Failed to add product. Try again.');
-    }finally{
-      setLoading(false)
+      toast.error("Failed to add product. Try again.");
+    } finally {
+      setLoading(false);
     }
-
-    
   };
 
   return (
-    <div className="container mx-auto p-6 font-varela">
-                 <Helmet>
-              <title> HUND Denmark || Add Products</title>
-            </Helmet>
+    <div className="container mx-auto md:p-6 font-varela">
+      <Helmet>
+        <title>HUND Denmark || Add Products</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-6 text-center border-b-4 border-r-4 border-gray-700 w-fit p-3 rounded-lg mx-auto">
         Add Product
       </h1>
@@ -103,8 +103,8 @@ const AddProduct = () => {
         className="bg-[#F5F5F5] shadow-xl text-gray-800 rounded-lg px-8 pt-6 pb-8 border border-gray-300"
       >
         {/* Product Name and Image */}
-        <div className="md:flex items-center gap-6">
-          <div className="mb-4 md:w-1/2">
+        <div className="flex flex-col md:flex-row gap-6 mb-6">
+          <div className="w-full">
             <label htmlFor="productName" className="block text-sm font-semibold mb-2">
               Product Name <span className="text-red-500">*</span>
             </label>
@@ -117,8 +117,7 @@ const AddProduct = () => {
               required
             />
           </div>
-
-          <div className="mb-4 md:w-1/2">
+          <div className="w-full">
             <label htmlFor="productImage" className="block text-sm font-semibold mb-2">
               Product Image
             </label>
@@ -147,16 +146,9 @@ const AddProduct = () => {
           ></textarea>
         </div>
 
-        {/* Owner Info */}
-        <div className="mb-6">
-          <h2 className="text-sm font-semibold mb-2">Owner Information:</h2>
-          <p className="text-sm">Name: {user?.displayName || 'Unknown'}</p>
-          <p className="text-sm">Email: {user?.email || 'No email'}</p>
-        </div>
-
         {/* Tags and External Link */}
-        <div className="md:flex items-center gap-6">
-          <div className="mb-4 md:w-1/2">
+        <div className="flex flex-col md:flex-row gap-6 mb-6">
+          <div className="w-full">
             <label htmlFor="tags" className="block text-sm font-semibold mb-2">
               Tags
             </label>
@@ -169,8 +161,7 @@ const AddProduct = () => {
               required
             />
           </div>
-
-          <div className="mb-4 md:w-1/2">
+          <div className="w-full">
             <label htmlFor="externalLink" className="block text-sm font-semibold mb-2">
               External Link
             </label>
@@ -191,9 +182,9 @@ const AddProduct = () => {
         >
           {loading ? (
             <span className="loading loading-spinner loading-md"></span>
-              ) : (
-                "Submit"
-              )}
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

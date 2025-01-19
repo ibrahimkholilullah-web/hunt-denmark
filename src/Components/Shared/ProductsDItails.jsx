@@ -74,7 +74,6 @@ const ProductsDItails = () => {
             description: reviewData.description,
             rating: parseInt(reviewData.rating),
         };
-        console.log(review)
 
         try {
             await axios.post(`${import.meta.env.VITE_PROJECT_APT}/reviews`, review);

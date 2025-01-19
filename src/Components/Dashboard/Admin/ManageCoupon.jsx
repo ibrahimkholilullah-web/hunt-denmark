@@ -6,9 +6,11 @@ import toast from "react-hot-toast";
 import { imageUpload } from "../../ImageBB/Utilist";
 import { useQuery } from "@tanstack/react-query";
 import CuoponModel from "./CuoponModel";
+import useAxiosePublic from "../../PublicAxiose/useAxiosePublic";
 
 const ManageCoupon = () => {
   const axioseSecure = useSecureAxiose()
+  const axiosePublic = useAxiosePublic()
   const [cuopon, setCuopon] = useState({})
   const [loading , setLoading] = useState(false)
   const handleAddCoupon = async (e) => {
@@ -42,7 +44,7 @@ const ManageCoupon = () => {
   const {data: cuopons =[], refetch} = useQuery({
     queryKey: ['cuopon'],
     queryFn: async () =>{
-      const {data} = await axioseSecure.get('/api/coupons')
+      const {data} = await axiosePublic.get('/api/coupons')
       return data
     }
   })
@@ -81,12 +83,12 @@ const ManageCoupon = () => {
             name="couponcode"
             required
             placeholder="Coupon Code"
-            className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
           />
            <input
              type="date"
              name="date"
-             className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+             className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
            />
           </div>
           <div className="flex items-center gap-5">
@@ -95,7 +97,7 @@ const ManageCoupon = () => {
             name="amount"
             required
             placeholder="Discount Amount"
-            className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
           />
           <input
               type="file"
@@ -109,11 +111,11 @@ const ManageCoupon = () => {
             placeholder="Coupon Description"
             name="description"
             required
-            className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#3BB77E]"
           ></textarea>
          
           <button
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="w-full px-4 py-2 bg-[#3BB77E] text-white rounded hover:bg-[#3BB77E]"
           >
             {
               loading ? <span className="loading loading-spinner loading-md"></span> : 'Add Coupon'
@@ -132,25 +134,26 @@ const ManageCoupon = () => {
           {cuopons.map((coupon) => (
             <div
               key={coupon._id}
-              className="p-4 bg-white rounded shadow space-y-2 border border-gray-200"
+              className="p-4 bg-white rounded-md shadow space-y-2 border border-[#3BB77E]"
             >
               <h3 className="font-bold text-lg">{coupon.code}</h3>
-              <p><strong>Description:</strong> {coupon.description}</p>
+              <p className="style-new text-sm"><strong>Description:</strong> {coupon.description}</p>
+              <img className="h-44 object-cover mx-auto" src={coupon.imagecupon} alt="" />
               <p><strong>Expiry Date:</strong> {coupon.date}</p>
-              <p><strong>Discount:</strong> ${coupon.amount}</p>
+              <p className=""><strong>Discount:</strong> ${coupon.amount}</p>
               <div className="flex space-x-2">
               <button
                    onClick={() => {
                      document.getElementById('my_modal_3').showModal(); // Call the `showModal` function
                      handleSignleCoupon(coupon._id); // Call the `handleSignleCoupon` function
                    }}
-                   className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                   className="px-4 py-2 bg-[#3BB77E] text-white rounded hover:bg-[#3BB77E]"
                  >
                    Edit
                  </button>
                 <button
                 onClick={() =>handeleteCuopon(coupon._id)}
-                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  className="px-4 py-2 bg-[#5CB360] text-white rounded hover:bg-[#3BB77E]"
                 >
                   Delete
                 </button>

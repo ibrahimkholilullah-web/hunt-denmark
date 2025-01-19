@@ -2,8 +2,10 @@ import React from 'react';
 import useAuth from '../AuthProvider/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
 const Report = ({ditails}) => {
+  const axioseSecure = useSecureAxiose()
   const {user} = useAuth()
   const repoterName = user?.displayName
   const repoterEmail = user?.email
@@ -17,14 +19,12 @@ const Report = ({ditails}) => {
   
     }
     try{
-      const {data} =await axios.post(`${import.meta.env.VITE_PROJECT_APT}/report`,reportpost)
-      console.log(data)
+      const {data} =await axioseSecure.post(`/report`,reportpost)
       toast.success('Report Sent Modarator.')
       e.target.reset()
     }catch(err){
-      toast.error(err.message)
+      toast.error(err.response.message)
     }
-    console.log(reportpost)
     document.getElementById("my_modal_3").close();
 
   }

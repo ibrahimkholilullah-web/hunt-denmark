@@ -31,7 +31,7 @@ if(isLoading) return <Loading></Loading>
                  <Helmet>
               <title> HUND Denmark || My Products</title>
             </Helmet>
-      <div className='border-2 border-black m-2 rounded-xl'>
+      <div className='border-2 border-[#3BB77E] m-2 rounded-xl'>
       <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
@@ -53,7 +53,7 @@ if(isLoading) return <Loading></Loading>
         Useremail.length === 0 ? <tr>
         <td
           colSpan="6"
-          className="text-center text-[#253D4E] py-5 text-lg"
+          className="text-center style-new text-[#253D4E] py-5 text-lg"
         >
           No products added yet. Please add your products!
         </td>

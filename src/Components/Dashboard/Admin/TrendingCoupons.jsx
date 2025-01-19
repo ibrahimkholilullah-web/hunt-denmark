@@ -1,11 +1,4 @@
-import React, { useState } from 'react';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import CheckoutForm from '../Payment/CheckoutForm';
-import useAuth from '../../AuthProvider/useAuth';
+
 
 const TrendingCoupons = ({ coupon }) => {
  
@@ -18,7 +11,7 @@ const TrendingCoupons = ({ coupon }) => {
               Discount: <span className="font-bold">{coupon.amount}%</span>
             </p>
             <p className="text-gray-700 mb-1">
-              Expiry: <span className="font-bold">{new Date(coupon.date).toLocaleDateString()}</span>
+              Expiry: <span className="font-bold">{coupon.date}</span>
             </p>
             <p className="text-gray-500 italic mb-4">{coupon.description}</p>
             <button

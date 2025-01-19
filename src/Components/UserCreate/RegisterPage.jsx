@@ -210,8 +210,8 @@ const RegisterPage = () => {
           {/* Mobile Login Link */}
           <h1 className="md:hidden block mt-2 text-left">
             Log in to your account?{" "}
-            <Link to="/" className="text-yellow-400">
-              Home
+            <Link to="/login" className="text-yellow-400">
+              Login
             </Link>
           </h1>
         </div>

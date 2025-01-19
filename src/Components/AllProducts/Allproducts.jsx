@@ -75,7 +75,7 @@ const AllProducts = () => {
                           <title> HUND Denmark || All Products</title>
                       </Helmet>
                   </div>
-      <div className="container md:pt-10 mx-auto min-h-screen">
+      <div className="container pt-10 mx-auto min-h-screen p-2">
       <div className="w-8/12 mx-auto mb-8">
         <label className="input input-bordered rounded-3xl flex items-center gap-2">
           <input
@@ -89,7 +89,7 @@ const AllProducts = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="h-12 w-20 -mr-4 rounded-r-3xl p-2 text-white bg-[#54673B] opacity-70"
+            className="h-12 hidden md:block w-20 -mr-4 rounded-r-3xl p-2 text-white bg-[#54673B] opacity-70"
           >
             <path
               fillRule="evenodd"

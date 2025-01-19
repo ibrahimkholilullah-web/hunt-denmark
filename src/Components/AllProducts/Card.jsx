@@ -43,7 +43,7 @@ const Card = ({ card  }) => {
         <p className="text-brown-800">{description.slice(0, 80)}...</p>
         <p className="bg-blue-gray-50 px-2 py-1 rounded-full text-sm">#{tags}</p>
       </div>
-      <Link to={`/ditails/${_id}`} className="absolute right-5 bottom-5">
+      <Link to={`/ditails/${_id}`} className="absolute right-5 bottom-6">
         <BiCommentDetail size={25} />
       </Link>
     </div>

@@ -2,56 +2,91 @@ import React from 'react';
 import Section from '../../Shared/Section';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Shared/Loading';
-import TrendingCoupons from '../../Dashboard/Admin/TrendingCoupons';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { Link, useNavigate } from 'react-router-dom';
+import { CiCircleChevRight } from 'react-icons/ci';
+import userRole from '../../hooks/userRole';
+import toast from 'react-hot-toast';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
+import useAxiosePublic from '../../PublicAxiose/useAxiosePublic';
 
 const CouponSection = () => {
-    const axiosSecure = useSecureAxiose(); // Fixed typo
-    const { data: coupons = [], isLoading, isError } = useQuery({
-        queryKey: ['couponHome'],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get('api/coupons');
-            return data;
-        },
-    });
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosePublic();
+  const [role] = userRole();
 
-    // Slider settings
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 2 } },
-            { breakpoint: 768, settings: { slidesToShow: 1 } },
-        ],
-    };
+  const { data: coupons = [], isLoading, isError, error } = useQuery({
+    queryKey: ['couponHome'],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get('api/coupons');
+      return data;
+    },
+  });
 
-    if (isLoading) return <Loading />;
-    if (isError) return <div>Failed to load coupons. Please try again later.</div>;
+  if (isLoading) return <Loading />;
+  if (isError) return <div>Error: {error?.message || 'Failed to load coupons. Please try again later.'}</div>;
 
-    return (
-        <div className='bg-[#BCE3C9] pb-32'>
-            <div className='container mx-auto'>
-                <Section title='Discount Offer' description='All Coupons' />
-                {coupons.length > 0 ? (
-                    <Slider {...settings}>
-                        {coupons.map((coupon) => (
-                            <TrendingCoupons key={coupon._id} coupon={coupon} />
-                        ))}
-                    </Slider>
-                ) : (
-                    <div>No coupons available at the moment.</div>
-                )}
-            </div>
-        </div>
-    );
+  const handleMyProfile = () => {
+    if (role === 'users') {
+      navigate('/dadhboard/myprofile');
+    } else {
+      toast.error('Access restricted to users only.');
+    }
+  };
+
+  return (
+    <div className="bg-[#BCE3C9] pb-32 px-2">
+      <div className="container mx-auto">
+        <Section titel="Discount Offer" description="All Coupons" />
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          pagination={{ clickable: true }}
+          modules={[Pagination]}
+          className="mySwiper"
+          breakpoints={{
+            // Responsive settings for Swiper
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {coupons.map((coupon) => (
+            <SwiperSlide key={coupon._id}>
+              <div className="card bg-[#F5F5F5] border shadow-2xl">
+                <div className="card-body">
+                  <h2 className="font-bold">Code: {coupon.code}</h2>
+                  <p>{coupon.description}</p>
+                  <p>Discount: $100 - ${coupon.amount}</p>
+                  <p>Expiry Date: {new Date(coupon.date).toLocaleDateString()}</p>
+                </div>
+                <figure>
+                  <img
+                    className="h-44 object-cover"
+                    src={coupon.imagecupon || '/placeholder.jpg'}
+                    alt="Coupon"
+                  />
+                </figure>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <button
+          onClick={handleMyProfile}
+          className="btn w-48 text-white mt-16 border-2 bg-[#3BB77E] hover:bg-[#3BB77E] flex mx-auto rounded-none varela"
+        >
+          Use Offer Coupon <CiCircleChevRight size={25} />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default CouponSection;

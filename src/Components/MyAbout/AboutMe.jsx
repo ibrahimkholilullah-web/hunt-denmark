@@ -3,13 +3,13 @@ import aboutImag from "../../assets/Image/about.jpg"
 const AboutMe = () => {
   return (
     <div className="min-h-screen bg-[#F5F5F5] varela flex items-center justify-center">
-     <div className=" max-w-4xl mx-auto rounded-lg bg-white shadow-md p-8">
+     <div className=" max-w-4xl mx-auto rounded-lg bg-blue-gray-50 shadow-md p-8">
      <div className=" flex flex-col sm:flex-row">
         {/* Image Section */}
         <div className="w-full sm:w-1/2 flex justify-center items-center">
             {/* Placeholder for the silhouette image */}
             <div className="h w-full flex items-center justify-center">
-              <img src={aboutImag} alt="" />
+              <img className=" rounded-lg " src={aboutImag} alt="" />
           </div>
         </div>
 
