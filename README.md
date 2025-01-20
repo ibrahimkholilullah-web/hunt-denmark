@@ -12,3 +12,9 @@
 
 * Moderators can change the status of each added product. If the moderators grant permission, the added products will be displayed on the homepage.
 * If any product is reported, the moderators will be able to view the report. They can delete the reported product if they wish.
+
+##  "Admin make use of this website."
+
+* The admin can view how many users have accessed the website, how many products are pending, and how many products have been approved.
+* The admin can change the roles of any user and can also assign them as moderators if desired. 
+* The admin can add offer tokens, and they also have the ability to delete or update them if needed.
