@@ -21,7 +21,7 @@ const Reviews = () => {
     if(isLoading) return <Loading></Loading>
     console.log(reviews)
     return (
-       <div className='bg-[#E6F6EE]'>
+       <div className='bg-green-50'>
          <div className='conatiner mx-auto pb-20'>
             <Section titel='Review Products' description='All Reviews'></Section>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">{reviews.map(repo => 

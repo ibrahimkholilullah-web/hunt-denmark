@@ -9,6 +9,7 @@ import CuoponModel from "./CuoponModel";
 import useAxiosePublic from "../../PublicAxiose/useAxiosePublic";
 import {motion} from "framer-motion"
 import {fadeIn}  from "../../Animation/variants"
+import { Helmet } from "react-helmet-async";
 const ManageCoupon = () => {
   const axioseSecure = useSecureAxiose()
   const axiosePublic = useAxiosePublic()
@@ -72,6 +73,11 @@ const ManageCoupon = () => {
 
   return (
    <div className="md:ml-2">
+    <Helmet>
+      <title>
+        Admin Page || Manage Coupon
+      </title>
+    </Helmet>
      <div className="flex flex-col rounded-xl items-center p-6 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Manage Coupons</h1>
 
