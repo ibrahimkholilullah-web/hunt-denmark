@@ -1,8 +1,9 @@
-# React + Vite
+## HUND Denmark
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* This is a Product Hunt website. It includes user, moderator, and admin dashboards. When a user signs up or logs in using Google, all their data is stored in the database. If the user later logs in again with the same Gmail account, duplicate entries are avoided. The website is fully responsive and designed with a user-friendly UX for all devices. Using a new user token, members can access offers and subscriptions. For added security, JWT tokens have been implemented.
 
-Currently, two official plugins are available:
+##  "Users make use of this website."
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Users can add products to this website. However, to display the products on the website, the moderator’s permission is required.
+* Users can delete or update all the products they have added.
+* Additionally, users can purchase subscriptions with money. If they use a coupon, they will receive a discount on the price.
