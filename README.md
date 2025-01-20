@@ -18,3 +18,55 @@
 * The admin can view how many users have accessed the website, how many products are pending, and how many products have been approved.
 * The admin can change the roles of any user and can also assign them as moderators if desired. 
 * The admin can add offer tokens, and they also have the ability to delete or update them if needed.
+
+## Main Technologies Used
+* Front-End: React, Tailwind CSS,
+* Back-End: Node.js, Express.js, MongoDB
+* Tools: Axios, Firebase.
+
+## Features
+
+- User-friendly interface
+- Responsive design
+- Secure authentication and authorization
+- Subscription management
+- Moderation features for products
+- Dynamic homepage with moderator-approved products
+- Token-based discount system
+
+### Frontend
+- **React** (`react`, `react-dom`): A JavaScript library for building user interfaces.
+- **React Router DOM** (`react-router-dom`): Routing for single-page applications.
+- **Material Tailwind** (`@material-tailwind/react`): UI components and design system.
+- **Framer Motion** (`framer-motion`): Animations and transitions.
+- **Animate.css**: Ready-to-use CSS animations.
+- **React Icons**: Icon library for React.
+- **Swiper**: Modern slider for web and mobile.
+
+### Backend
+- **Firebase**: Authentication, database, and hosting.
+- **Helmet**: Security headers for Express apps.
+
+### State Management and Querying
+- **TanStack React Query** (`@tanstack/react-query`): Data fetching and caching.
+
+### Utilities
+- **Axios**: HTTP client for API requests.
+- **LocalForage**: Asynchronous storage for large data.
+- **React Hook Form**: Form validation and management.
+- **React Hot Toast**: Notification system.
+- **Recharts**: Charting library for data visualization.
+- **Slick Carousel**: Carousel library.
+- **Match Sorter**: Sorting utilities.
+- **Sort By**: Sorting helper library.
+
+### Payment
+- **Stripe** (`@stripe/react-stripe-js`, `@stripe/stripe-js`): Payment integration.
+
+## Installation
+
+Follow these steps to set up the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-ibrahimkholilullah-web.git
