@@ -81,7 +81,7 @@ const AddProduct = () => {
     try {
       const { data } = await axioseSecure.post(`/products`, productsInfo);
       toast.success("Product added successfully!");
-      navigate("/dashboard/myProducts");
+      navigate("/dadhboard/myProducts");
       form.reset();
     } catch (err) {
       toast.error("Failed to add product. Try again.");

@@ -27,7 +27,7 @@ const RegisterPage = () => {
 
       // Ensure an image is uploaded
       if (!data.image || data.image.length === 0) {
-        alert("Please upload a profile image!");
+        toast.error("Please upload a profile image!");
         return;
       }
 
@@ -41,10 +41,10 @@ const RegisterPage = () => {
       // Save user details to the database
       await saveUser({ ...result?.user, displayName: name, photoUrl });
 
-      console.log("User created:", result.user);
+      toast.success(" Success Fully User created");
       navigate(location?.state ? location?.state : "/");
     } catch (err) {
-      console.error("Error during registration:", err.message);
+      toast.error( err.message);
     }
   };
  const habdleGoogleSignUp = async () =>{

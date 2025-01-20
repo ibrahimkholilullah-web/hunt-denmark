@@ -73,12 +73,14 @@ const ProductsDItails = () => {
             reviewerImage: user?.photoURL,
             description: reviewData.description,
             rating: parseInt(reviewData.rating),
+            product: productName,
         };
 
         try {
             await axios.post(`${import.meta.env.VITE_PROJECT_APT}/reviews`, review);
-            e.target.reset()
+           
             toast.success('Review submitted successfully!');
+            e.target.reset()
         } catch (err) {
             toast.error('Failed to submit review: ' + err.message);
         }
@@ -175,7 +177,6 @@ const ProductsDItails = () => {
         <div>
           <label className="block text-sm font-medium">Review Description</label>
           <textarea
-            value={reviewData.description}
             onChange={(e) =>
               setReviewData({ ...reviewData, description: e.target.value })
             }
@@ -191,7 +192,6 @@ const ProductsDItails = () => {
             type="number"
             min="1"
             max="5"
-            value={reviewData.rating}
             onChange={(e) =>
               setReviewData({ ...reviewData, rating: e.target.value })
             }

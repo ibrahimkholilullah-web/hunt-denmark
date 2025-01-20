@@ -5,6 +5,7 @@ import TrendingProducts from './TrendingProducts';
 import { Helmet } from 'react-helmet-async';
 import Contact from './Contact';
 import CouponSection from './CouponSection';
+import Reviews from './Reviews';
 
 const Home = () => {
     return (
@@ -19,6 +20,7 @@ const Home = () => {
             <TrendingProducts></TrendingProducts>
             <CouponSection></CouponSection>
             <Contact></Contact>
+            <Reviews></Reviews>
         </div>
     );
 };

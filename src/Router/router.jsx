@@ -19,11 +19,13 @@ import ModaretorRout from "../Components/SellerRout/ModaretorRout";
 import ManageCoupon from "../Components/Dashboard/Admin/ManageCoupon";
 import AboutMe from "../Components/MyAbout/AboutMe";
 import MembershipPage from "../Components/Dashboard/Admin/MembershipPage";
+import Error from "../Components/Error/Error";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element:<Root></Root>,
+      errorElement: <Error></Error>,
       children:[
         {
           path:'/',
@@ -59,6 +61,7 @@ const router = createBrowserRouter([
     {
       path:'/dadhboard',
       element: <Dashboard></Dashboard>,
+      errorElement: <Error></Error>,
       children:[
         {
           path:'myprofile',

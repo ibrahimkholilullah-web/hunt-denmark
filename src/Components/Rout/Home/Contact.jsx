@@ -1,22 +1,33 @@
 import React from "react";
 import Section from "../../Shared/Section";
-
+import {motion} from "framer-motion"
+import {fadeIn}  from "../../Animation/variants"
 const Contact = () => {
   return (
     <div className="bg-[#F5F5F5] varela">
       <Section titel="Hudn Menmark" description="Contact Us"></Section>
-      <div className="bg-[#F5F5F5] pb-10 px-6 container mx-auto">
+      <div className="bg-[#F5F5F5] pb-20 px-6 container mx-auto">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-[#253D4E] max-w-2xl mx-auto">
+          <motion.p
+          variants={fadeIn('left', 0.2)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: false,amount: 0.7}}
+          className="text-[#253D4E] max-w-2xl mx-auto">
             We’d love to hear from you! Whether you’re a product creator, an
             enthusiast, or just exploring, we’re here to answer your questions
             and help you make the most of your experience.
-          </p>
+          </motion.p>
         </div>
 
         <div className="mt-10 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Details */}
-          <div className="space-y-6">
+          <motion.div
+          variants={fadeIn('right', 0.2)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: false,amount: 0.7}}
+          className="space-y-6">
             <div>
               <p className="font-bold text-lg">Message Us Directly</p>
               <p className="text-[#253D4E]">
@@ -57,10 +68,15 @@ const Contact = () => {
                 <p className="text-[#253D4E]">ibrahimkholilt56@gmail.com</p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="bg-white border border-[#3BB781] p-6 rounded-xl shadow-md">
+          <motion.div
+          variants={fadeIn('left', 0.2)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: false,amount: 0.7}}
+          className="bg-white border border-[#3BB781] p-6 rounded-xl shadow-md">
             <form className="space-y-4">
               <div>
                 <label className="block text-gray-700 font-bold mb-2">
@@ -93,7 +109,7 @@ const Contact = () => {
                 Send
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

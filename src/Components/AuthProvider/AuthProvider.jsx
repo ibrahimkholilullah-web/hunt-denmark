@@ -53,16 +53,10 @@ const AuthProvider = ({ children }) => {
 
   // Sign in user with email and password
   const signUser = async (email, password) => {
-    try {
       setLoading(true);
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       return userCredential;
-    } catch (error) {
-      console.error("Error signing in:", error);
-      throw error;
-    } finally {
-      setLoading(false);
-    }
+    
   };
 
   // Sign out user

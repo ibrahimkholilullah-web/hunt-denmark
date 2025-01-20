@@ -16,7 +16,8 @@ import userRole from '../../hooks/userRole';
 import toast from 'react-hot-toast';
 import useSecureAxiose from '../../useSecureAxiose/useSecureAxiose';
 import useAxiosePublic from '../../PublicAxiose/useAxiosePublic';
-
+import {motion} from "framer-motion"
+import {fadeIn}  from "../../Animation/variants"
 const CouponSection = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosePublic();
@@ -60,7 +61,12 @@ const CouponSection = () => {
         >
           {coupons.map((coupon) => (
             <SwiperSlide key={coupon._id}>
-              <div className="card bg-[#F5F5F5] border shadow-2xl">
+              <motion.div
+              variants={fadeIn('up', 0.2)}
+              initial='hidden'
+              whileInView={'show'}
+              viewport={{once: false,amount: 0.7}}
+              className="card bg-[#F5F5F5] border shadow-2xl">
                 <div className="card-body">
                   <h2 className="font-bold">Code: {coupon.code}</h2>
                   <p>{coupon.description}</p>
@@ -74,7 +80,7 @@ const CouponSection = () => {
                     alt="Coupon"
                   />
                 </figure>
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>

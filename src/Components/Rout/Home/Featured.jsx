@@ -10,6 +10,8 @@ import { LuArrowUpWideNarrow, LuMousePointerClick } from 'react-icons/lu';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../AuthProvider/useAuth';
 import { FaRegThumbsUp } from "react-icons/fa";
+import {motion} from "framer-motion"
+import {fadeIn}  from "../../Animation/variants"
 const Featured = () => {
   const {user} = useAuth()
   const navigate = useNavigate()
@@ -54,7 +56,11 @@ const Featured = () => {
       <Section titel="New Add Products" description="Featured Products" />
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {products.slice(0, 4).map((product) => (
-          <div
+          <motion.div
+          variants={fadeIn('left', 0.2)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: false,amount: 0.7}}
             key={product._id}
             className="border-2 hover:bg-brown-50 border-[#54673B] rounded-lg p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-lg hover:shadow-xl transition-shadow"
           >
@@ -93,7 +99,7 @@ const Featured = () => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -7,7 +7,8 @@ import { imageUpload } from "../../ImageBB/Utilist";
 import { useQuery } from "@tanstack/react-query";
 import CuoponModel from "./CuoponModel";
 import useAxiosePublic from "../../PublicAxiose/useAxiosePublic";
-
+import {motion} from "framer-motion"
+import {fadeIn}  from "../../Animation/variants"
 const ManageCoupon = () => {
   const axioseSecure = useSecureAxiose()
   const axiosePublic = useAxiosePublic()
@@ -74,7 +75,12 @@ const ManageCoupon = () => {
      <div className="flex flex-col rounded-xl items-center p-6 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Manage Coupons</h1>
 
-      <div className="mb-6 w-full ">
+      <motion.div 
+      variants={fadeIn('right', 0.2)}
+      initial='hidden'
+      whileInView={'show'}
+      viewport={{once: false,amount: 0.7}}
+      className="mb-6 w-full ">
         <h2 className="text-lg font-semibold mb-2">Add New Coupon</h2>
         <form onSubmit={handleAddCoupon} className="space-y-4">
           <div className="flex items-center gap-5"> 
@@ -124,15 +130,19 @@ const ManageCoupon = () => {
             
           </button>
         </form>
-      </div>
+      </motion.div>
 
       
 
       <div className="w-full max-w-4xl">
-        <h2 className="text-xl font-semibold mb-4">Available Coupons</h2>
+        <h2 className="text-xl font-semibold mb-4 text-center">Available Coupons</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {cuopons.map((coupon) => (
-            <div
+            <motion.div 
+            variants={fadeIn('up', 0.2)}
+              initial='hidden'
+              whileInView={'show'}
+              viewport={{once: false,amount: 0.7}}
               key={coupon._id}
               className="p-4 bg-white rounded-md shadow space-y-2 border border-[#3BB77E]"
             >
@@ -158,7 +168,7 @@ const ManageCoupon = () => {
                   Delete
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

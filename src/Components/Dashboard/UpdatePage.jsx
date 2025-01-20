@@ -6,16 +6,18 @@ import useAuth from '../AuthProvider/useAuth';
 import Loading from '../Shared/Loading';
 import toast from 'react-hot-toast';
 import { imageUpload } from '../ImageBB/Utilist';
+import useSecureAxiose from '../useSecureAxiose/useSecureAxiose';
 
 const UpdatePage = () => {
   const { user } = useAuth();
   const { id } = useParams();
 const navigate = useNavigate()
+const axioseSecure = useSecureAxiose()
   const { data: update = {}, isLoading } = useQuery({
     queryKey: ['update', id],
     queryFn: async () => {
       if (!id) throw new Error('Invalid product ID');
-      const { data } = await axios.get(`${import.meta.env.VITE_PROJECT_APT}/products/${id}`);
+      const { data } = await axioseSecure.get(`/products/${id}`);
       return data;
     },
     onError: (error) => {

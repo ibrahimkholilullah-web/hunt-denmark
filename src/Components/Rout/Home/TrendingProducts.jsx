@@ -6,7 +6,8 @@ import Loading from '../../Shared/Loading';
 import { Link } from 'react-router-dom';
 import { FcNext } from 'react-icons/fc';
 import { CiCircleChevRight } from 'react-icons/ci';
-
+import {motion} from "framer-motion"
+import {fadeIn}  from "../../Animation/variants"
 const TrendingProducts = () => {
     const {data : tranding=[], isLoading,refetch} = useQuery({
         queryKey: ['treanding'],
@@ -24,7 +25,12 @@ const TrendingProducts = () => {
             <div className='px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     tranding.map(tranfing => (
-                        <div key={tranfing._id}>
+                        <motion.div
+                        variants={fadeIn('right', 0.2)}
+                        initial='hidden'
+                        whileInView={'show'}
+                        viewport={{once: false,amount: 0.7}} 
+                        key={tranfing._id}>
                             <div className="card bg-[#FBFDFC] hover:bg-[#E5F6EE] border rounded-lg py-4  shadow-xl">
                               <figure>
                                 <img
@@ -44,7 +50,7 @@ const TrendingProducts = () => {
                                 </div>
                               </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))
                 }
             </div>

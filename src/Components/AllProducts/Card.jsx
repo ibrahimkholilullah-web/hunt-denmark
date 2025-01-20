@@ -6,7 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../AuthProvider/useAuth';
 import toast from 'react-hot-toast';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
-
+import {motion} from "framer-motion"
+import {fadeIn}  from "../Animation/variants"
 const Card = ({ card  }) => {
 
   const {
@@ -21,7 +22,12 @@ const Card = ({ card  }) => {
 
   
   return (
-    <div className="card relative border-2 p-2 card-compact bg-[#E9E9E9] shadow-xl">
+    <motion.div 
+    variants={fadeIn('up', 0.2)}
+    initial='hidden'
+    whileInView={'show'}
+    viewport={{once: false,amount: 0.7}}
+    className="card relative border-2 p-2 card-compact bg-[#E9E9E9] shadow-xl">
       <figure>
         <img
           className="h-64 w-full border-2 rounded-xl object-cover"
@@ -46,7 +52,7 @@ const Card = ({ card  }) => {
       <Link to={`/ditails/${_id}`} className="absolute right-5 bottom-6">
         <BiCommentDetail size={25} />
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
