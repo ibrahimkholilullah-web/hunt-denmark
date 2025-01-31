@@ -18,7 +18,8 @@
 * The admin can view how many users have accessed the website, how many products are pending, and how many products have been approved.
 * The admin can change the roles of any user and can also assign them as moderators if desired. 
 * The admin can add offer tokens, and they also have the ability to delete or update them if needed.
-
+Admin email : shakibislam@gmail.com
+Admin password : 1234Abcd@
 ## Main Technologies Used
 * Front-End: React, Tailwind CSS,
 * Back-End: Node.js, Express.js, MongoDB
